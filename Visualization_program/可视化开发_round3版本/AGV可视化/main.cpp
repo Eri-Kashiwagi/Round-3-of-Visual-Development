@@ -19,7 +19,7 @@
 #include "YBLocation.h"
 #include "YB_Vessel_Num.h"
 #include "ClockTime.h"
-#include "AGV_BeingIdle.h"
+#include "AGV_BeingIdleNum_Vessel_DelayedNum.h"
 #include "Berth_Vessel.h"
 #pragma comment(lib, "winmm.lib")  
 using namespace std;
@@ -30,7 +30,7 @@ AGV_waitlist_QC Agv_waitlist_QC;
 YBLocation Yblocation;
 ClockTime Clocktime;
 YB_Vessel_Num Yb_Vessel_Num;
-AGV_BeingIdle Agv_BeingIdle;
+AGV_BeingIdleNum_Vessel_DelayedNum Agv_BeingIdleNum_Vessel_DelayedNum;
 Berth_Vessel berth_Vessel;
 IMAGE bg;
 IMAGE PLAYPNG;
@@ -76,7 +76,7 @@ void visualization::update() {
             Yb_Vessel_Num.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
         }
     }
-    Agv_BeingIdle.update(0, 0, 0);
+    Agv_BeingIdleNum_Vessel_DelayedNum.update(0, 0, 0);
     Clocktime.update(tt, 0, 0);
     EndBatchDraw();
 }
@@ -141,7 +141,7 @@ int main() {
                 getline(Agv_waitlist_container_count_per_yard.file, s);
             }
         }
-        getline(Agv_BeingIdle.file, s);
+        getline(Agv_BeingIdleNum_Vessel_DelayedNum.file, s);
         cout << ".";
     }
     cout << endl;
@@ -185,7 +185,7 @@ int main() {
                     getline(Agv_waitlist_container_count_per_yard.file, s);
                 }
             }
-            getline(Agv_BeingIdle.file, s);
+            getline(Agv_BeingIdleNum_Vessel_DelayedNum.file, s);
         }
     }
     closegraph(); 
