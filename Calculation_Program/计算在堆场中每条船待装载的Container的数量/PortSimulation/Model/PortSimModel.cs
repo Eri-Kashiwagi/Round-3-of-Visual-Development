@@ -214,7 +214,7 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
                     Yc.ServedBlock.YB_Vessel["vessel " + i.ToString()] = 0;
                 }
             }
-            for (TimeSpan i = TimeSpan.FromSeconds(1); i <= TimeSpan.FromSeconds(864000); i += TimeSpan.FromSeconds(1))
+            for (TimeSpan i = TimeSpan.FromSeconds(1); i <= TimeSpan.FromSeconds(6048000); i += TimeSpan.FromSeconds(1))
             {
                 Schedule(() => GetYB_VesselNum(), i);
             }
