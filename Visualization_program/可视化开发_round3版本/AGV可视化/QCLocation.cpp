@@ -8,11 +8,6 @@ inline void ConvertToWideChar(const char* src, wchar_t* dest, int destSize) {
     MultiByteToWideChar(CP_ACP, 0, src, -1, dest, destSize);
 }
 QCLocation::QCLocation() {
-    char currentDirectory[MAX_PATH];
-    GetCurrentDirectoryA(MAX_PATH, currentDirectory);
-    for (int i = 0; i < 3; ++i) {
-        PathRemoveFileSpecA(currentDirectory);
-    }
     const char* fileName = "Calculated_Data\\QCLocation.txt";
     char fullPath[MAX_PATH];
     PathCombineA(fullPath, currentDirectory, fileName);

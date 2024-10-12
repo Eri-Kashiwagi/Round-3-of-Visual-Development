@@ -21,6 +21,7 @@
 #include "ClockTime.h"
 #include "AGV_BeingIdleNum_Vessel_DelayedNum.h"
 #include "Berth_Vessel.h"
+#include "Directory.h"
 #pragma comment(lib, "winmm.lib")  
 using namespace std;
 AGV_operation_and_its_container Agv_operation_and_its_container;
@@ -36,6 +37,8 @@ IMAGE bg;
 IMAGE PLAYPNG;
 IMAGE HALTPNG;
 int tt;
+int TimeMax = 6048000;
+int oneweek = 604800;
 class visualization {
 public:
     static void update();
@@ -47,7 +50,7 @@ void visualization::stop() {
     if (MouseHit()) {
         ExMessage msg = getmessage();
         if (msg.message == WM_LBUTTONDOWN) {
-            if (msg.x >= 760 && msg.x <= 860 && msg.y >= 848 && msg.y <= 952) {
+            if (msg.x >= 770 && msg.x <= 870 && msg.y >= 848 && msg.y <= 952) {
                 if (stopflag == false)stopflag = true;
                 else stopflag = false;
             }
@@ -58,8 +61,8 @@ void visualization::update() {
     BeginBatchDraw();
     cleardevice();
     putimage(0, 0, &bg);
-    if(visualization::stopflag==true)putimagePNG(760, 848, &PLAYPNG);
-    else putimagePNG(760, 848, &HALTPNG);
+    if(visualization::stopflag==true)putimagePNG(770, 848, &PLAYPNG);
+    else putimagePNG(770, 848, &HALTPNG);
     for (int i = 0; i < 16; i++) {
         if (i < 12) {
             if (i < 4) {
@@ -125,7 +128,15 @@ int main() {
     cout << "请稍等，正在初始化......................................................................................................" << endl;
     Sleep(1000);
     string s;
-    for (int i = 0; i < l; i++) {
+    int lf = l/ oneweek + 1;
+    Agv_BeingIdleNum_Vessel_DelayedNum.setfile(lf);
+    Agv_operation_and_its_container.setfile(lf);
+    Agv_waitlist_container_count_per_yard.setfile(lf);
+    Agv_waitlist_QC.setfile(lf);
+    berth_Vessel.setfile(lf);
+    Yb_Vessel_Num.setfile(lf);
+    int ld = l % (oneweek);
+    for (int i = 0; i < ld; i++) {
         for (int j = 0; j < 16; j++) {
             if (j < 12) {
                 if (j < 4) {
@@ -162,7 +173,7 @@ int main() {
     Clocktime.current_time_t = mktime(&Clocktime.userTime);
     initgraph(2560, 1600);
     setbkcolor(WHITE);   
-    for (int i = l/tt; i <= 6048000/tt; i++) {
+    for (int i = l/tt; i <= TimeMax/tt; i++) {
         visualization::stop();
         visualization::update();
         while (visualization::stopflag) {
@@ -186,6 +197,17 @@ int main() {
                 }
             }
             getline(Agv_BeingIdleNum_Vessel_DelayedNum.file, s);
+            ld++;
+            if (ld == (oneweek)) {
+                ld = 0;
+                lf += 1;
+                Agv_BeingIdleNum_Vessel_DelayedNum.setfile(lf);
+                Agv_operation_and_its_container.setfile(lf);
+                Agv_waitlist_container_count_per_yard.setfile(lf);
+                Agv_waitlist_QC.setfile(lf);
+                berth_Vessel.setfile(lf);
+                Yb_Vessel_Num.setfile(lf);
+            }
         }
     }
     closegraph(); 

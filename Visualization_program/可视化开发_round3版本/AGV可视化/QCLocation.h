@@ -3,7 +3,8 @@
 #include <fstream>   
 #include <graphics.h> 
 #include "ControlPoint.h"
-class QCLocation {
+#include "Directory.h"
+class QCLocation:public Directory {
 public:
 	ControlPoint cp[12];
 	std::ifstream file;

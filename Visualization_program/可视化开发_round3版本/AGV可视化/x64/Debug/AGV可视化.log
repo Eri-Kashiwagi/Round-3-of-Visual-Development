@@ -1,1 +1,8 @@
-﻿
+﻿E:\vs studio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: 中间目录(x64\Debug\)包含从另一个项目(AGV可视化.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
+  main.cpp
+C:\Users\Lenovo\Desktop\Round 3 of Visual Development - 副本 (2)\Visualization_program\可视化开发_round3版本\AGV可视化\main.cpp(75,63): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\Lenovo\Desktop\Round 3 of Visual Development - 副本 (2)\Visualization_program\可视化开发_round3版本\AGV可视化\main.cpp(75,41): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\Lenovo\Desktop\Round 3 of Visual Development - 副本 (2)\Visualization_program\可视化开发_round3版本\AGV可视化\main.cpp(131,12): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
+C:\Users\Lenovo\Desktop\Round 3 of Visual Development - 副本 (2)\Visualization_program\可视化开发_round3版本\AGV可视化\main.cpp(176,16): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
+C:\Users\Lenovo\Desktop\Round 3 of Visual Development - 副本 (2)\Visualization_program\可视化开发_round3版本\AGV可视化\main.cpp(182,15): warning C4244: “参数”: 从“__int64”转换到“DWORD”，可能丢失数据
+  AGV可视化.vcxproj -> C:\Users\Lenovo\Desktop\Round 3 of Visual Development - 副本 (2)\Visualization_program\可视化开发_round3版本\x64\Debug\可视化开发.exe

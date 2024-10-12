@@ -12,15 +12,6 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
     {
         public double Run(int runIndex, int seed)
         {
-            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string parentDirectory = currentDirectory;
-            for (int i = 0; i < 6; i++)
-            {
-                DirectoryInfo parentInfo = Directory.GetParent(parentDirectory);
-                parentDirectory = parentInfo.FullName;
-            }
-            string filePath = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath = Path.Combine(filePath, "Berth_Vessel.txt");
             Console.WriteLine(String.Concat(Enumerable.Repeat("*", 70)));
             Console.WriteLine($"Seed: {seed}, Scenario {runIndex}:");
             Console.WriteLine($"Simulation running...");
@@ -42,10 +33,91 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
             WSCPort.berthBeingIdle.DefaultMaker = WSCPortDefaulter;
             WSCPort.agvBeingIdle.DefaultMaker = WSCPortDefaulter;
             WSCPort.agvDeliveringtoYard.DefaultMaker = WSCPortDefaulter;
-            using (StreamWriter writer = new StreamWriter(filePath))
+            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string parentDirectory = currentDirectory;
+            for (int i = 0; i < 6; i++)
+            {
+                DirectoryInfo parentInfo = Directory.GetParent(parentDirectory);
+                parentDirectory = parentInfo.FullName;
+            }
+            string filePath1 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath1 = Path.Combine(filePath1, "Berth_Vessel1.txt");
+            using (StreamWriter writer = new StreamWriter(filePath1))
             {
                 Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks));
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+            }
+
+            string filePath2 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath2 = Path.Combine(filePath2, "Berth_Vessel2.txt");
+            using (StreamWriter writer = new StreamWriter(filePath2))
+            {
+                Console.SetOut(writer);
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+            }
+
+            string filePath3 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath3 = Path.Combine(filePath3, "Berth_Vessel3.txt");
+            using (StreamWriter writer = new StreamWriter(filePath3))
+            {
+                Console.SetOut(writer);
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+            }
+
+            string filePath4 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath4 = Path.Combine(filePath4, "Berth_Vessel4.txt");
+            using (StreamWriter writer = new StreamWriter(filePath4))
+            {
+                Console.SetOut(writer);
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+            }
+
+            string filePath5 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath5 = Path.Combine(filePath5, "Berth_Vessel5.txt");
+            using (StreamWriter writer = new StreamWriter(filePath5))
+            {
+                Console.SetOut(writer);
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+            }
+
+            string filePath6 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath6 = Path.Combine(filePath6, "Berth_Vessel6.txt");
+            using (StreamWriter writer = new StreamWriter(filePath6))
+            {
+                Console.SetOut(writer);
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+            }
+
+            string filePath7 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath7 = Path.Combine(filePath7, "Berth_Vessel7.txt");
+            using (StreamWriter writer = new StreamWriter(filePath7))
+            {
+                Console.SetOut(writer);
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+            }
+
+            string filePath8 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath8 = Path.Combine(filePath8, "Berth_Vessel8.txt");
+            using (StreamWriter writer = new StreamWriter(filePath8))
+            {
+                Console.SetOut(writer);
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+            }
+
+            string filePath9 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath9 = Path.Combine(filePath9, "Berth_Vessel9.txt");
+            using (StreamWriter writer = new StreamWriter(filePath9))
+            {
+                Console.SetOut(writer);
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+            }
+
+            string filePath10 = Path.Combine(parentDirectory, "Calculated_Data");
+            filePath10 = Path.Combine(filePath10, "Berth_Vessel10.txt");
+            using (StreamWriter writer = new StreamWriter(filePath10))
+            {
+                Console.SetOut(writer);
+                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
             }
             for (int i = 0; i < WSCPort.Vessels.Count; i++)
             {

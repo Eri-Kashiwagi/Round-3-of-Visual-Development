@@ -9,15 +9,6 @@
 using namespace std;
 #pragma comment(lib, "Shlwapi.lib")
 AGV_waitlist_container_count_per_yard::AGV_waitlist_container_count_per_yard() {
-    char currentDirectory[MAX_PATH];
-    GetCurrentDirectoryA(MAX_PATH, currentDirectory);
-    for (int i = 0; i < 3; ++i) {
-        PathRemoveFileSpecA(currentDirectory);
-    }
-    const char* fileName = "Calculated_Data\\AGV_waitlist_container_count_per_yard.txt";
-    char fullPath[MAX_PATH];
-    PathCombineA(fullPath, currentDirectory, fileName);
-    file.open(fullPath);
 }
 void AGV_waitlist_container_count_per_yard::update(int i,double x,double y) {
     string s,s1;
@@ -50,6 +41,15 @@ void AGV_waitlist_container_count_per_yard::update(int i,double x,double y) {
         }
         d++;
     }
+}
+void AGV_waitlist_container_count_per_yard::setfile(int x) {
+    if (file.is_open())file.close();
+    string ch = to_string(x);
+    string fileName = "Calculated_Data\\AGV_waitlist_container_count_per_yard" + std::to_string(x) + ".txt";
+    const char* fileName1 = fileName.c_str();
+    char fullPath[MAX_PATH];
+    PathCombineA(fullPath, currentDirectory, fileName1);
+    file.open(fullPath);
 }
 AGV_waitlist_container_count_per_yard::~AGV_waitlist_container_count_per_yard() {
     file.close();

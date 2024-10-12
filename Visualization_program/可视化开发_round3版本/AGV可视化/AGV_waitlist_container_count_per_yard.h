@@ -2,10 +2,12 @@
 #include <iostream>
 #include <fstream>   
 #include <graphics.h> 
-class AGV_waitlist_container_count_per_yard {
+#include "Directory.h"
+class AGV_waitlist_container_count_per_yard:public Directory {
 public:
     std::ifstream file;
     AGV_waitlist_container_count_per_yard();
     ~AGV_waitlist_container_count_per_yard();
     void update(int i,double x,double y);
+    void setfile(int x);
 };

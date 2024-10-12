@@ -8,15 +8,7 @@
 #include <shlwapi.h>
 using namespace std;
 YB_Vessel_Num::YB_Vessel_Num() {
-    char currentDirectory[MAX_PATH];
-    GetCurrentDirectoryA(MAX_PATH, currentDirectory);
-    for (int i = 0; i < 3; ++i) {
-        PathRemoveFileSpecA(currentDirectory);
-    }
-    const char* fileName = "Calculated_Data\\YB_Vessel_Num.txt";
-    char fullPath[MAX_PATH];
-    PathCombineA(fullPath, currentDirectory, fileName);
-    file.open(fullPath);
+
 }
 void YB_Vessel_Num::update(int i, double x, double y) {
     string s, s1;
@@ -31,6 +23,15 @@ void YB_Vessel_Num::update(int i, double x, double y) {
         outtextxy(x - 25 + 26 * (d % 5), y + 150 + 160 + (d - 1) / 5 * 20, s_w.c_str());
         d++;
     }
+}
+void YB_Vessel_Num::setfile(int x) {
+    if (file.is_open())file.close();
+    string ch = to_string(x);
+    string fileName = "Calculated_Data\\YB_Vessel_Num" + std::to_string(x) + ".txt";
+    const char* fileName1 = fileName.c_str();
+    char fullPath[MAX_PATH];
+    PathCombineA(fullPath, currentDirectory, fileName1);
+    file.open(fullPath);
 }
 YB_Vessel_Num::~YB_Vessel_Num() {
     file.close();
