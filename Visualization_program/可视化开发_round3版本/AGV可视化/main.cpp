@@ -22,6 +22,7 @@
 #include "AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.h"
 #include "Berth_Vessel.h"
 #include "Directory.h"
+#include"Change_Speed.h"
 #pragma comment(lib, "winmm.lib")  
 using namespace std;
 AGV_operation_and_its_container Agv_operation_and_its_container;
@@ -33,10 +34,10 @@ ClockTime Clocktime;
 YB_Vessel_Num Yb_Vessel_Num;
 AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum;
 Berth_Vessel berth_Vessel;
+Change_Speed change_speed;
 IMAGE bg;
 IMAGE PLAYPNG;
 IMAGE HALTPNG;
-int tt;
 int TimeMax = 6048000;
 int oneweek = 604800;
 class visualization {
@@ -55,14 +56,21 @@ void visualization::stop() {
                 else stopflag = false;
             }
         }
+        if (stopflag == true)change_speed.change(msg);
     }
 }
+
 void visualization::update() {
     BeginBatchDraw();
+    if (visualization::stopflag) {
+        putimagePNG(770, 848, &PLAYPNG);
+        change_speed.update(1, 0, 0);
+        EndBatchDraw();
+        return;
+    }
     cleardevice();
     putimage(0, 0, &bg);
-    if(visualization::stopflag==true)putimagePNG(770, 848, &PLAYPNG);
-    else putimagePNG(770, 848, &HALTPNG);
+    putimagePNG(770, 848, &HALTPNG);
     for (int i = 0; i < 16; i++) {
         if (i < 12) {
             if (i < 4) {
@@ -70,9 +78,9 @@ void visualization::update() {
             }
             Agv_operation_and_its_container.update(i, Agv_operation_and_its_container.cp[i].x, Agv_operation_and_its_container.cp[i].y);
             Agv_waitlist_container_count_per_yard.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
-            Agv_waitlist_QC.update(i, Qclocation.cp[i].x, Qclocation.cp[i].y+23);
+            Agv_waitlist_QC.update(i, Qclocation.cp[i].x, Qclocation.cp[i].y + 23);
             Yb_Vessel_Num.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
-            putimagePNG(Qclocation.cp[i].x, Qclocation.cp[i].y+23, &Qclocation.QCPNG[i]);
+            putimagePNG(Qclocation.cp[i].x, Qclocation.cp[i].y + 23, &Qclocation.QCPNG[i]);
         }
         else {
             Agv_waitlist_container_count_per_yard.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
@@ -80,7 +88,8 @@ void visualization::update() {
         }
     }
     Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.update(0, 0, 0);
-    Clocktime.update(tt, 0, 0);
+    change_speed.update(0, 0, 0);
+    Clocktime.update(change_speed.tt, 0, 0);
     EndBatchDraw();
 }
 inline void ConvertToWideChar(const char* src, wchar_t* dest, int destSize) {
@@ -110,25 +119,25 @@ int main() {
     loadimage(&PLAYPNG, fullPathW1);
     loadimage(&HALTPNG, fullPathW2);
     loadimage(&bg, fullPathW3);
-    long long op,l,zhenshu;
+    long long op, l, zhenshu;
     cout << "您好，欢迎进入港口可视化初始化界面" << endl;
-    cout<<"现在的仿真时间是2024/5/3 00:00:00" << endl;
+    cout << "现在的仿真时间是2024/5/3 00:00:00" << endl;
     cout << "请你选择期望的时间计算方式：" << endl;
     cout << "1.过了多少秒后开始仿真" << endl;
     cout << "2.在哪一个时间开始仿真" << endl;
     cout << "请输入1/2：";
     cin >> op;
     if (op == 1) {
-        l=Clocktime.calculateTimeFromSeconds();
+        l = Clocktime.calculateTimeFromSeconds();
     }
     else {
-        l=Clocktime.readTimeFromInput();
+        l = Clocktime.readTimeFromInput();
     }
-    cout << "------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
     cout << "请稍等，正在初始化......................................................................................................" << endl;
     Sleep(1000);
     string s;
-    int lf = l/ oneweek + 1;
+    int lf = l / oneweek + 1;
     Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
     Agv_operation_and_its_container.setfile(lf);
     Agv_waitlist_container_count_per_yard.setfile(lf);
@@ -142,8 +151,8 @@ int main() {
                 if (j < 4) {
                     getline(berth_Vessel.file, s);
                 }
-                getline(Agv_operation_and_its_container.file,s);
-                getline(Agv_waitlist_container_count_per_yard.file,s);
+                getline(Agv_operation_and_its_container.file, s);
+                getline(Agv_waitlist_container_count_per_yard.file, s);
                 getline(Agv_waitlist_QC.file, s);
                 getline(Yb_Vessel_Num.file, s);
             }
@@ -163,7 +172,7 @@ int main() {
     cout << endl;
     Sleep(1000);
     cout << "请输入你期望几秒取一次数据(必须是正整数):";
-    cin >> tt;
+    cin >> change_speed.tt;
     cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
     cout << "请稍等，正在初始化......................................................................................................" << endl;
     cout << endl;
@@ -172,15 +181,16 @@ int main() {
     cout << "开始运行!" << endl;
     Clocktime.current_time_t = mktime(&Clocktime.userTime);
     initgraph(2560, 1600);
-    setbkcolor(WHITE);   
-    for (int i = l/tt; i <= TimeMax/tt; i++) {
+    setbkcolor(WHITE);
+    for (int i = l; i <= 6048000; i++) {
         visualization::stop();
-        visualization::update();
         while (visualization::stopflag) {
+            visualization::update();
             visualization::stop();
         }
+        visualization::update();
         Sleep(zhenshu);
-        for (int k = 0; k < tt; k++) {
+        for (int k = 0; k < change_speed.tt; k++) {
             for (int j = 0; j < 16; j++) {
                 if (j < 12) {
                     if (j < 4) {
@@ -210,6 +220,6 @@ int main() {
             }
         }
     }
-    closegraph(); 
+    closegraph();
     return 0;
 }

@@ -19,8 +19,8 @@ void AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::update(int i, double x, doub
     s1 = "AGV_BeingIdleNum: " + s1;
     wstring s_w = wstring(s1.begin(), s1.end());
     settextcolor(BLACK);
-    settextstyle(50, 0, L"Consolas");
-    outtextxy(50, 950, s_w.c_str());
+    settextstyle(40, 0, L"Consolas");
+    outtextxy(50, 940, s_w.c_str());
 
     getline(ss, s1, ',');
     s1 = "Vessel_Delayed: " + s1;

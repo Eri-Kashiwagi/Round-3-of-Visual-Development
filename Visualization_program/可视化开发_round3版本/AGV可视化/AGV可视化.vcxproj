@@ -131,6 +131,7 @@
     <ClCompile Include="AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp" />
     <ClCompile Include="AGV_operation_and_its_container.cpp" />
     <ClCompile Include="Berth_Vessel.cpp" />
+    <ClCompile Include="Change_Speed.cpp" />
     <ClCompile Include="ClockTime.cpp" />
     <ClCompile Include="AGV_waitlist_container_count_per_yard.cpp" />
     <ClCompile Include="Directory.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.h" />
     <ClInclude Include="AGV_operation_and_its_container.h" />
     <ClInclude Include="Berth_Vessel.h" />
+    <ClInclude Include="Change_Speed.h" />
     <ClInclude Include="ClockTime.h" />
     <ClInclude Include="AGV_waitlist_container_count_per_yard.h" />
     <ClInclude Include="ControlPoint.h" />
