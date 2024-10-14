@@ -128,7 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AGV_BeingIdleNum_Vessel_DelayedNum.cpp" />
+    <ClCompile Include="AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp" />
     <ClCompile Include="AGV_operation_and_its_container.cpp" />
     <ClCompile Include="Berth_Vessel.cpp" />
     <ClCompile Include="ClockTime.cpp" />
@@ -143,7 +143,7 @@
     <ClCompile Include="YB_Vessel_Num.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AGV_BeingIdleNum_Vessel_DelayedNum.h" />
+    <ClInclude Include="AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.h" />
     <ClInclude Include="AGV_operation_and_its_container.h" />
     <ClInclude Include="Berth_Vessel.h" />
     <ClInclude Include="ClockTime.h" />

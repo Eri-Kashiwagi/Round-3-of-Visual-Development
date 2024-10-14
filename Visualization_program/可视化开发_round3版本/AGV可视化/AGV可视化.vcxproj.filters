@@ -48,7 +48,7 @@
     <ClCompile Include="YB_Vessel_Num.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="AGV_BeingIdleNum_Vessel_DelayedNum.cpp">
+    <ClCompile Include="AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Berth_Vessel.cpp">
@@ -86,7 +86,7 @@
     <ClInclude Include="YB_Vessel_Num.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="AGV_BeingIdleNum_Vessel_DelayedNum.h">
+    <ClInclude Include="AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Berth_Vessel.h">

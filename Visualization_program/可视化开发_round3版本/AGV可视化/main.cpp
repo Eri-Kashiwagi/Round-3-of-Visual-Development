@@ -19,7 +19,7 @@
 #include "YBLocation.h"
 #include "YB_Vessel_Num.h"
 #include "ClockTime.h"
-#include "AGV_BeingIdleNum_Vessel_DelayedNum.h"
+#include "AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.h"
 #include "Berth_Vessel.h"
 #include "Directory.h"
 #pragma comment(lib, "winmm.lib")  
@@ -31,7 +31,7 @@ AGV_waitlist_QC Agv_waitlist_QC;
 YBLocation Yblocation;
 ClockTime Clocktime;
 YB_Vessel_Num Yb_Vessel_Num;
-AGV_BeingIdleNum_Vessel_DelayedNum Agv_BeingIdleNum_Vessel_DelayedNum;
+AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum;
 Berth_Vessel berth_Vessel;
 IMAGE bg;
 IMAGE PLAYPNG;
@@ -79,7 +79,7 @@ void visualization::update() {
             Yb_Vessel_Num.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
         }
     }
-    Agv_BeingIdleNum_Vessel_DelayedNum.update(0, 0, 0);
+    Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.update(0, 0, 0);
     Clocktime.update(tt, 0, 0);
     EndBatchDraw();
 }
@@ -129,7 +129,7 @@ int main() {
     Sleep(1000);
     string s;
     int lf = l/ oneweek + 1;
-    Agv_BeingIdleNum_Vessel_DelayedNum.setfile(lf);
+    Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
     Agv_operation_and_its_container.setfile(lf);
     Agv_waitlist_container_count_per_yard.setfile(lf);
     Agv_waitlist_QC.setfile(lf);
@@ -152,7 +152,7 @@ int main() {
                 getline(Agv_waitlist_container_count_per_yard.file, s);
             }
         }
-        getline(Agv_BeingIdleNum_Vessel_DelayedNum.file, s);
+        getline(Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.file, s);
         cout << ".";
     }
     cout << endl;
@@ -196,12 +196,12 @@ int main() {
                     getline(Agv_waitlist_container_count_per_yard.file, s);
                 }
             }
-            getline(Agv_BeingIdleNum_Vessel_DelayedNum.file, s);
+            getline(Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.file, s);
             ld++;
             if (ld == (oneweek)) {
                 ld = 0;
                 lf += 1;
-                Agv_BeingIdleNum_Vessel_DelayedNum.setfile(lf);
+                Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
                 Agv_operation_and_its_container.setfile(lf);
                 Agv_waitlist_container_count_per_yard.setfile(lf);
                 Agv_waitlist_QC.setfile(lf);

@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Lenovo\\Desktop\\Round 3 of Visual Development\\Visualization_program\\\u53EF\u89C6\u5316\u5F00\u53D1_round3\u7248\u672C\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9A1D09-73AF-437C-B6C1-4F21D9F7C4A6}|AGV\u53EF\u89C6\u5316\\AGV\u53EF\u89C6\u5316.vcxproj|C:\\Users\\Lenovo\\Desktop\\Round 3 of Visual Development\\Visualization_program\\\u53EF\u89C6\u5316\u5F00\u53D1_round3\u7248\u672C\\AGV\u53EF\u89C6\u5316\\AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5E9A1D09-73AF-437C-B6C1-4F21D9F7C4A6}|AGV\u53EF\u89C6\u5316\\AGV\u53EF\u89C6\u5316.vcxproj|solutionrelative:AGV\u53EF\u89C6\u5316\\AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9A1D09-73AF-437C-B6C1-4F21D9F7C4A6}|AGV\u53EF\u89C6\u5316\\AGV\u53EF\u89C6\u5316.vcxproj|C:\\Users\\Lenovo\\Desktop\\Round 3 of Visual Development\\Visualization_program\\\u53EF\u89C6\u5316\u5F00\u53D1_round3\u7248\u672C\\AGV\u53EF\u89C6\u5316\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5E9A1D09-73AF-437C-B6C1-4F21D9F7C4A6}|AGV\u53EF\u89C6\u5316\\AGV\u53EF\u89C6\u5316.vcxproj|solutionrelative:AGV\u53EF\u89C6\u5316\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Round 3 of Visual Development\\Visualization_program\\\u53EF\u89C6\u5316\u5F00\u53D1_round3\u7248\u672C\\AGV\u53EF\u89C6\u5316\\AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp",
+              "RelativeDocumentMoniker": "AGV\u53EF\u89C6\u5316\\AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Round 3 of Visual Development\\Visualization_program\\\u53EF\u89C6\u5316\u5F00\u53D1_round3\u7248\u672C\\AGV\u53EF\u89C6\u5316\\AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp",
+              "RelativeToolTip": "AGV\u53EF\u89C6\u5316\\AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.cpp",
+              "ViewState": "AQIAAAMAAAAAAAAAAADwvxoAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-14T06:23:20.087Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Round 3 of Visual Development\\Visualization_program\\\u53EF\u89C6\u5316\u5F00\u53D1_round3\u7248\u672C\\AGV\u53EF\u89C6\u5316\\main.cpp",
+              "RelativeDocumentMoniker": "AGV\u53EF\u89C6\u5316\\main.cpp",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Round 3 of Visual Development\\Visualization_program\\\u53EF\u89C6\u5316\u5F00\u53D1_round3\u7248\u672C\\AGV\u53EF\u89C6\u5316\\main.cpp",
+              "RelativeToolTip": "AGV\u53EF\u89C6\u5316\\main.cpp",
+              "ViewState": "AQIAAMcAAAAAAAAAAAAkwCEAAABbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-12T08:58:34.007Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
