@@ -119,6 +119,7 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
                 Console.SetOut(writer);
                 WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
             }
+            Environment.Exit(0);
             for (int i = 0; i < WSCPort.Vessels.Count; i++)
             {
                 if (WSCPort.Vessels[i].ArrivalTime != DateTime.MinValue && WSCPort.Vessels[i].StartBerthingTime == DateTime.MinValue)
