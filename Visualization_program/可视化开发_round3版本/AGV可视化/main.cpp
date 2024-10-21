@@ -188,9 +188,7 @@ int main() {
             visualization::update();
             visualization::stop();
         }
-        visualization::update();
-        Sleep(zhenshu);
-        for (int k = 0; k < change_speed.tt; k++) {
+        for (int k = 0; k < change_speed.tt-1; k++) {
             for (int j = 0; j < 16; j++) {
                 if (j < 12) {
                     if (j < 4) {
@@ -219,6 +217,8 @@ int main() {
                 Yb_Vessel_Num.setfile(lf);
             }
         }
+        visualization::update();
+        Sleep(zhenshu);
     }
     closegraph();
     return 0;

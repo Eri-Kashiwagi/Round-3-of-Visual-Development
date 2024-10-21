@@ -64,10 +64,10 @@ wstring ClockTime::time_to_wstring(tm current_time) {
     return ss.str();
 }
 void ClockTime::update(int i,double x,double y) {
+    current_time_t += i;
     localtime_s(&current_time, &current_time_t);
     wstring time_str = time_to_wstring(current_time);
     settextcolor(BLACK);
     settextstyle(50, 0, L"Consolas");
     outtextxy(600, 950, time_str.c_str());
-    current_time_t += i;
 }
