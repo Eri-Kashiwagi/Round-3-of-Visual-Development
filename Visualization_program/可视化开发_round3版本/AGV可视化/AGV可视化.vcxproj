@@ -133,10 +133,10 @@
     <ClCompile Include="Berth_Vessel.cpp" />
     <ClCompile Include="Change_Speed.cpp" />
     <ClCompile Include="ClockTime.cpp" />
-    <ClCompile Include="AGV_waitlist_container_count_per_yard.cpp" />
+    <ClCompile Include="AGV_waitlist_container_count_per_yard_Status.cpp" />
     <ClCompile Include="Directory.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="AGV_waitlist_QC.cpp" />
+    <ClCompile Include="AGV_waitlist_QC_Status.cpp" />
     <ClCompile Include="QCLocation.cpp" />
     <ClCompile Include="tools.cpp" />
     <ClCompile Include="vector2.cpp" />
@@ -149,9 +149,9 @@
     <ClInclude Include="Berth_Vessel.h" />
     <ClInclude Include="Change_Speed.h" />
     <ClInclude Include="ClockTime.h" />
-    <ClInclude Include="AGV_waitlist_container_count_per_yard.h" />
+    <ClInclude Include="AGV_waitlist_container_count_per_yard_Status.h" />
     <ClInclude Include="ControlPoint.h" />
-    <ClInclude Include="AGV_waitlist_QC.h" />
+    <ClInclude Include="AGV_waitlist_QC_Status.h" />
     <ClInclude Include="Directory.h" />
     <ClInclude Include="tools.h" />
     <ClInclude Include="vector2.h" />

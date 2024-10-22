@@ -36,10 +36,10 @@
     <ClCompile Include="QCLocation.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="AGV_waitlist_container_count_per_yard.cpp">
+    <ClCompile Include="AGV_waitlist_container_count_per_yard_Status.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="AGV_waitlist_QC.cpp">
+    <ClCompile Include="AGV_waitlist_QC_Status.cpp">
       <Filter>源文件\Entity</Filter>
     </ClCompile>
     <ClCompile Include="YBLocation.cpp">
@@ -74,10 +74,10 @@
     <ClInclude Include="AGV_operation_and_its_container.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="AGV_waitlist_container_count_per_yard.h">
+    <ClInclude Include="AGV_waitlist_container_count_per_yard_Status.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="AGV_waitlist_QC.h">
+    <ClInclude Include="AGV_waitlist_QC_Status.h">
       <Filter>头文件\Entity</Filter>
     </ClInclude>
     <ClInclude Include="QCLocation.h">

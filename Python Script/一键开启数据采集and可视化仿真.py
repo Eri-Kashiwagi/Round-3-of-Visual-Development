@@ -6,11 +6,11 @@ import subprocess
 import threading
 
 current_directory = os.path.dirname(os.getcwd())
-solution_file_1 = os.path.join(current_directory, r"Calculation_Program\AGV运行过程以及其携带的Container\WSC_SimChallenge_2024_Net.sln")
-solution_file_2 = os.path.join(current_directory, r"Calculation_Program\计算AGV等待QC装货的数量\WSC_SimChallenge_2024_Net.sln")
-solution_file_3 = os.path.join(current_directory, r"Calculation_Program\计算AGV等待YC操作的列表以及每个堆场目前堆存Container的数量\WSC_SimChallenge_2024_Net.sln")
+solution_file_1 = os.path.join(current_directory, r"Calculation_Program\计算当前泊位停靠的船\WSC_SimChallenge_2024_Net.sln")
+solution_file_2 = os.path.join(current_directory, r"Calculation_Program\计算AGV等待QC装货的数量以及QC目前的状态\WSC_SimChallenge_2024_Net.sln")
+solution_file_3 = os.path.join(current_directory, r"Calculation_Program\计算AGV等待YC操作的列表,每个堆场目前堆存Container的数量以及当前堆场YC的状态\WSC_SimChallenge_2024_Net.sln")
 solution_file_4 = os.path.join(current_directory, r"Calculation_Program\计算AGV空闲的数量,Delayed以及Waiting船舶数量\WSC_SimChallenge_2024_Net.sln")
-solution_file_5 = os.path.join(current_directory, r"Calculation_Program\计算当前泊位停靠的船\WSC_SimChallenge_2024_Net.sln")
+solution_file_5 = os.path.join(current_directory, r"Calculation_Program\AGV运行过程以及其携带的Container\WSC_SimChallenge_2024_Net.sln")
 solution_file_6 = os.path.join(current_directory, r"Calculation_Program\计算在堆场中每条船待装载的Container的数量\WSC_SimChallenge_2024_Net.sln")
 solution_file_7 = os.path.join(current_directory, r"Visualization_program\可视化开发_round3版本\港口可视化开发.sln")
 

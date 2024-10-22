@@ -23,16 +23,16 @@ def change(op1, op2):
         base_source_path = os.path.join(current_directory, "Python Script Materials\修改Seed和Scenario", f"{op2}")
         source_files = [
             os.path.join(base_source_path, r"AGV运行过程以及其携带的Container\Program.cs"),
-            os.path.join(base_source_path, r"计算AGV等待QC装货的数量\Program.cs"),
-            os.path.join(base_source_path, r"计算AGV等待YC操作的列表以及每个堆场目前堆存Container的数量\Program.cs"),
+            os.path.join(base_source_path, r"计算AGV等待QC装货的数量以及QC目前的状态\Program.cs"),
+            os.path.join(base_source_path, r"计算AGV等待YC操作的列表,每个堆场目前堆存Container的数量以及当前堆场YC的状态\Program.cs"),
             os.path.join(base_source_path, r"计算AGV空闲的数量,Delayed以及Waiting船舶数量\Program.cs"),
             os.path.join(base_source_path, r"计算当前泊位停靠的船\Program.cs"),
             os.path.join(base_source_path, r"计算在堆场中每条船待装载的Container的数量\Program.cs")
         ]
         target_files = [
             os.path.join(current_directory, r"Calculation_Program\AGV运行过程以及其携带的Container\Program.cs"),
-            os.path.join(current_directory, r"Calculation_Program\计算AGV等待QC装货的数量\Program.cs"),
-            os.path.join(current_directory, r"Calculation_Program\计算AGV等待YC操作的列表以及每个堆场目前堆存Container的数量\Program.cs"),
+            os.path.join(current_directory, r"Calculation_Program\计算AGV等待QC装货的数量以及QC目前的状态\Program.cs"),
+            os.path.join(current_directory, r"Calculation_Program\计算AGV等待YC操作的列表,每个堆场目前堆存Container的数量以及当前堆场YC的状态\Program.cs"),
             os.path.join(current_directory, r"Calculation_Program\计算AGV空闲的数量,Delayed以及Waiting船舶数量\Program.cs"),
             os.path.join(current_directory, r"Calculation_Program\计算当前泊位停靠的船\Program.cs"),
             os.path.join(current_directory, r"Calculation_Program\计算在堆场中每条船待装载的Container的数量\Program.cs")

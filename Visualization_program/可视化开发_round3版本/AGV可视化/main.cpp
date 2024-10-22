@@ -14,8 +14,8 @@
 #include "vector2.h"  
 #include "AGV_operation_and_its_container.h"
 #include "QCLocation.h"
-#include "AGV_waitlist_container_count_per_yard.h"
-#include "AGV_waitlist_QC.h"
+#include "AGV_waitlist_container_count_per_yard_Status.h"
+#include "AGV_waitlist_QC_Status.h"
 #include "YBLocation.h"
 #include "YB_Vessel_Num.h"
 #include "ClockTime.h"
@@ -27,8 +27,8 @@
 using namespace std;
 AGV_operation_and_its_container Agv_operation_and_its_container;
 QCLocation Qclocation;
-AGV_waitlist_container_count_per_yard Agv_waitlist_container_count_per_yard;
-AGV_waitlist_QC Agv_waitlist_QC;
+AGV_waitlist_container_count_per_yard_Status Agv_waitlist_container_count_per_yard_Status;
+AGV_waitlist_QC_Status Agv_waitlist_QC_Status;
 YBLocation Yblocation;
 ClockTime Clocktime;
 YB_Vessel_Num Yb_Vessel_Num;
@@ -77,13 +77,13 @@ void visualization::update() {
                 berth_Vessel.update(i, 0, 0);
             }
             Agv_operation_and_its_container.update(i, Agv_operation_and_its_container.cp[i].x, Agv_operation_and_its_container.cp[i].y);
-            Agv_waitlist_container_count_per_yard.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
-            Agv_waitlist_QC.update(i, Qclocation.cp[i].x, Qclocation.cp[i].y + 23);
+            Agv_waitlist_container_count_per_yard_Status.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
+            Agv_waitlist_QC_Status.update(i, Qclocation.cp[i].x, Qclocation.cp[i].y + 23);
             Yb_Vessel_Num.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
             putimagePNG(Qclocation.cp[i].x, Qclocation.cp[i].y + 23, &Qclocation.QCPNG[i]);
         }
         else {
-            Agv_waitlist_container_count_per_yard.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
+            Agv_waitlist_container_count_per_yard_Status.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
             Yb_Vessel_Num.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
         }
     }
@@ -140,8 +140,8 @@ int main() {
     int lf = l / oneweek + 1;
     Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
     Agv_operation_and_its_container.setfile(lf);
-    Agv_waitlist_container_count_per_yard.setfile(lf);
-    Agv_waitlist_QC.setfile(lf);
+    Agv_waitlist_container_count_per_yard_Status.setfile(lf);
+    Agv_waitlist_QC_Status.setfile(lf);
     berth_Vessel.setfile(lf);
     Yb_Vessel_Num.setfile(lf);
     int ld = l % (oneweek);
@@ -152,13 +152,13 @@ int main() {
                     getline(berth_Vessel.file, s);
                 }
                 getline(Agv_operation_and_its_container.file, s);
-                getline(Agv_waitlist_container_count_per_yard.file, s);
-                getline(Agv_waitlist_QC.file, s);
+                getline(Agv_waitlist_container_count_per_yard_Status.file, s);
+                getline(Agv_waitlist_QC_Status.file, s);
                 getline(Yb_Vessel_Num.file, s);
             }
             else {
                 getline(Yb_Vessel_Num.file, s);
-                getline(Agv_waitlist_container_count_per_yard.file, s);
+                getline(Agv_waitlist_container_count_per_yard_Status.file, s);
             }
         }
         getline(Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.file, s);
@@ -195,13 +195,13 @@ int main() {
                         getline(berth_Vessel.file, s);
                     }
                     getline(Agv_operation_and_its_container.file, s);
-                    getline(Agv_waitlist_container_count_per_yard.file, s);
-                    getline(Agv_waitlist_QC.file, s);
+                    getline(Agv_waitlist_container_count_per_yard_Status.file, s);
+                    getline(Agv_waitlist_QC_Status.file, s);
                     getline(Yb_Vessel_Num.file, s);
                 }
                 else {
                     getline(Yb_Vessel_Num.file, s);
-                    getline(Agv_waitlist_container_count_per_yard.file, s);
+                    getline(Agv_waitlist_container_count_per_yard_Status.file, s);
                 }
             }
             getline(Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.file, s);
@@ -211,8 +211,8 @@ int main() {
                 lf += 1;
                 Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
                 Agv_operation_and_its_container.setfile(lf);
-                Agv_waitlist_container_count_per_yard.setfile(lf);
-                Agv_waitlist_QC.setfile(lf);
+                Agv_waitlist_container_count_per_yard_Status.setfile(lf);
+                Agv_waitlist_QC_Status.setfile(lf);
                 berth_Vessel.setfile(lf);
                 Yb_Vessel_Num.setfile(lf);
             }
