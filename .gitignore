@@ -24,3 +24,5 @@ _ReSharper*/
 *.DotSettings.user
 .idea/
 *.sln.iml
+**/Debug/
+**/X64/Debug/
