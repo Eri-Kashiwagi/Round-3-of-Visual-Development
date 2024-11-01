@@ -30,7 +30,7 @@ void AGV_operation_and_its_container::update(int i, double x, double y) {
     x = stod(s1);
     getline(ss, s1, ',');
     y = stod(s1);
-    y += 50;
+    y += 50+20;
     putimage(x,y, &AGVPNG[i]);
     getline(ss, s1, ',');
     if (s1=="1"||s1=="2") {
@@ -39,7 +39,7 @@ void AGV_operation_and_its_container::update(int i, double x, double y) {
         getline(ss, s1);
         wstring s_w = wstring(s1.begin(), s1.end());
         settextstyle(20, 0, L"Tahoma");
-        outtextxy(x,y+20, s_w.c_str());
+        outtextxy(x,y+20+20, s_w.c_str());
         settextcolor(BLACK);
     }
 }

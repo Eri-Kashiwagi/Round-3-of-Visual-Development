@@ -9,6 +9,7 @@ public:
     std::ifstream file;
     void update(int i, double x, double y);
     void setfile(int x);
+    IMAGE YardBlock;
     YB_Vessel_Num();
     ~YB_Vessel_Num();
 };

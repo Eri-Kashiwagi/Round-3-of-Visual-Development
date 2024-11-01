@@ -223,7 +223,7 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
         {
             foreach (var Yc in YCs)
             {
-                Console.Write($"{ClockTime.ToString("yyyy - MM - dd HH: mm:ss")},");
+                Console.Write($"{ClockTime.ToString("yyyy-MM-dd HH:mm:ss")},");
                 for (int i = 0; i <= 29; i++)
                 {
                     Console.Write($"{Yc.ServedBlock.YB_Vessel["vessel " + i.ToString()]},");

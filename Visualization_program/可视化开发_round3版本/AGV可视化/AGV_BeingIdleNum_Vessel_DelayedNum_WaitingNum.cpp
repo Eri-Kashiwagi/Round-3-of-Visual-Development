@@ -20,21 +20,21 @@ void AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::update(int i, double x, doub
     wstring s_w = wstring(s1.begin(), s1.end());
     settextcolor(BLACK);
     settextstyle(40, 0, L"Consolas");
-    outtextxy(50, 940, s_w.c_str());
+    outtextxy(50, 940+12, s_w.c_str());
 
     getline(ss, s1, ',');
     s1 = "Vessel_Delayed: " + s1;
     s_w = wstring(s1.begin(), s1.end());
     settextcolor(BLACK);
     settextstyle(40, 0, L"Consolas");
-    outtextxy(1250, 940, s_w.c_str());
+    outtextxy(1250, 940+12, s_w.c_str());
 
     getline(ss, s1, ',');
     s1 = "Vessel_Waiting: " + s1;
     s_w = wstring(s1.begin(), s1.end());
     settextcolor(BLACK);
     settextstyle(40, 0, L"Consolas");
-    outtextxy(1250, 980, s_w.c_str());
+    outtextxy(1250, 980+12, s_w.c_str());
 }
 void AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::setfile(int x) {
     if (file.is_open())file.close();

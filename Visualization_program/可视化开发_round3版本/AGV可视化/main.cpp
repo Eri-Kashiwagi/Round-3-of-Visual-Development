@@ -38,6 +38,7 @@ Change_Speed change_speed;
 IMAGE bg;
 IMAGE PLAYPNG;
 IMAGE HALTPNG;
+IMAGE sea;
 int TimeMax = 6048000;
 int oneweek = 604800;
 class visualization {
@@ -51,7 +52,7 @@ void visualization::stop() {
     if (MouseHit()) {
         ExMessage msg = getmessage();
         if (msg.message == WM_LBUTTONDOWN) {
-            if (msg.x >= 770 && msg.x <= 870 && msg.y >= 848 && msg.y <= 952) {
+            if (msg.x >= 770 && msg.x <= 870 && msg.y >= 848 + 22 && msg.y <= 952 + 22) {
                 if (stopflag == false)stopflag = true;
                 else stopflag = false;
             }
@@ -63,28 +64,29 @@ void visualization::stop() {
 void visualization::update() {
     BeginBatchDraw();
     if (visualization::stopflag) {
-        putimagePNG(770, 848, &PLAYPNG);
+        putimagePNG(770, 848 + 22, &PLAYPNG);
         change_speed.update(1, 0, 0);
         EndBatchDraw();
         return;
     }
     cleardevice();
     putimage(0, 0, &bg);
-    putimagePNG(770, 848, &HALTPNG);
+    putimage(0, 0, &sea);
+    putimagePNG(770, 848+22, &HALTPNG);
     for (int i = 0; i < 16; i++) {
         if (i < 12) {
             if (i < 4) {
                 berth_Vessel.update(i, 0, 0);
             }
-            Agv_operation_and_its_container.update(i, Agv_operation_and_its_container.cp[i].x, Agv_operation_and_its_container.cp[i].y);
-            Agv_waitlist_container_count_per_yard_Status.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
-            Agv_waitlist_QC_Status.update(i, Qclocation.cp[i].x, Qclocation.cp[i].y + 23);
-            Yb_Vessel_Num.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
-            putimagePNG(Qclocation.cp[i].x, Qclocation.cp[i].y + 23, &Qclocation.QCPNG[i]);
+            Agv_operation_and_its_container.update(i, Agv_operation_and_its_container.cp[i].x, Agv_operation_and_its_container.cp[i].y+22);
+            Agv_waitlist_container_count_per_yard_Status.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y + 22);
+            Agv_waitlist_QC_Status.update(i, Qclocation.cp[i].x, Qclocation.cp[i].y + 23 + 22);
+            Yb_Vessel_Num.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y + 22);
+            putimagePNG(Qclocation.cp[i].x, Qclocation.cp[i].y + 23 + 22, &Qclocation.QCPNG[i]);
         }
         else {
-            Agv_waitlist_container_count_per_yard_Status.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
-            Yb_Vessel_Num.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y);
+            Agv_waitlist_container_count_per_yard_Status.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y + 22);
+            Yb_Vessel_Num.update(i, Yblocation.cp[i].x, Yblocation.cp[i].y + 22);
         }
     }
     Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.update(0, 0, 0);
@@ -116,9 +118,15 @@ int main() {
     PathCombineA(fullPath3, currentDirectory, fileName3);
     wchar_t fullPathW3[MAX_PATH];
     ConvertToWideChar(fullPath3, fullPathW3, MAX_PATH);
+    const char* fileName4 = "Image_Materials\\sea.png";
+    char fullPath4[MAX_PATH];
+    PathCombineA(fullPath4, currentDirectory, fileName4);
+    wchar_t fullPathW4[MAX_PATH];
+    ConvertToWideChar(fullPath4, fullPathW4, MAX_PATH);
     loadimage(&PLAYPNG, fullPathW1);
     loadimage(&HALTPNG, fullPathW2);
     loadimage(&bg, fullPathW3);
+    loadimage(&sea, fullPathW4);
     long long op, l, zhenshu;
     cout << "您好，欢迎进入港口可视化初始化界面" << endl;
     cout << "现在的仿真时间是2024/5/3 00:00:00" << endl;

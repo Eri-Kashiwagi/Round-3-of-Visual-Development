@@ -19,42 +19,42 @@ Change_Speed::Change_Speed() {
     }
 }
 void Change_Speed::update(int i, double x, double y) {
-    putimage(775, 753, &pg[0]);
-    putimage(825, 753, &pg[1]);
-    putimage(775, 803, &pg[2]);
-    putimage(825, 803, &pg[3]);
+    putimage(775, 753+22, &pg[0]);
+    putimage(825, 753+22, &pg[1]);
+    putimage(775, 803+22, &pg[2]);
+    putimage(825, 803+22, &pg[3]);
     if (tt == 1) {
-        putimage(775, 753, &pg[4]);
+        putimage(775, 753+22, &pg[4]);
     }
     else if (tt == 5) {
-        putimage(825, 753, &pg[5]);
+        putimage(825, 753+22, &pg[5]);
     }
     else if (tt == 10) {
-        putimage(775, 803, &pg[6]);
+        putimage(775, 803+22, &pg[6]);
     }
     else if (tt == 100) {
-        putimage(825, 803, &pg[7]);
+        putimage(825, 803+22, &pg[7]);
     }
     if (i == 0) {
         settextcolor(BLACK);
         settextstyle(40, 0, L"Consolas");
         string s = "Now_Speed:" + to_string(tt) + "X";
         wstring s_w = wstring(s.begin(), s.end());
-        outtextxy(50, 980, s_w.c_str());
+        outtextxy(50, 980+12, s_w.c_str());
     }
 }
 void Change_Speed::change(ExMessage msg) {
     if (msg.message == WM_LBUTTONDOWN) {
-        if (msg.x >= 775 && msg.x <= 815 && msg.y >= 753 && msg.y <= 793) {
+        if (msg.x >= 775 && msg.x <= 815 && msg.y >= 753+22 && msg.y <= 793+22) {
             tt = 1;
         }
-        else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 753 && msg.y <= 793) {
+        else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 753 + 22 && msg.y <= 793 + 22) {
             tt = 5;
         }
-        else if (msg.x >= 775 && msg.x <= 815 && msg.y >= 803 && msg.y <= 843) {
+        else if (msg.x >= 775 && msg.x <= 815 && msg.y >= 803 + 22 && msg.y <= 843 + 22) {
             tt = 10;
         }
-        else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 803 && msg.y <= 843) {
+        else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 803 + 22 && msg.y <= 843 + 22) {
             tt = 100;
         }
     }

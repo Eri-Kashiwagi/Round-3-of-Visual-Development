@@ -6,7 +6,7 @@
 class Berth_Vessel:public Directory {
 public:
     std::ifstream file;
-    IMAGE berth;
+    IMAGE vessel;
     Berth_Vessel();
     void update(int i, double x, double y);
     void setfile(int x);

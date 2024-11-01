@@ -69,5 +69,5 @@ void ClockTime::update(int i,double x,double y) {
     wstring time_str = time_to_wstring(current_time);
     settextcolor(BLACK);
     settextstyle(50, 0, L"Consolas");
-    outtextxy(600, 950, time_str.c_str());
+    outtextxy(600, 950+22, time_str.c_str());
 }
