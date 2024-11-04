@@ -39,6 +39,7 @@ IMAGE bg;
 IMAGE PLAYPNG;
 IMAGE HALTPNG;
 IMAGE sea;
+IMAGE Road;
 int TimeMax = 6048000;
 int oneweek = 604800;
 class visualization {
@@ -72,6 +73,7 @@ void visualization::update() {
     cleardevice();
     putimage(0, 0, &bg);
     putimage(0, 0, &sea);
+    putimage(0, 68, &Road);
     putimagePNG(770, 848+22, &HALTPNG);
     for (int i = 0; i < 16; i++) {
         if (i < 12) {
@@ -96,6 +98,15 @@ void visualization::update() {
 }
 inline void ConvertToWideChar(const char* src, wchar_t* dest, int destSize) {
     MultiByteToWideChar(CP_ACP, 0, src, -1, dest, destSize);
+}
+void setFullScreen() {
+    HWND hwnd = GetConsoleWindow();
+    ShowWindow(hwnd, SW_HIDE); 
+    RECT desktop;
+    GetWindowRect(GetDesktopWindow(), &desktop);
+    int screenWidth = desktop.right;
+    int screenHeight = desktop.bottom;
+    initgraph(screenWidth, screenHeight);
 }
 int main() {
     char currentDirectory[MAX_PATH];
@@ -123,10 +134,16 @@ int main() {
     PathCombineA(fullPath4, currentDirectory, fileName4);
     wchar_t fullPathW4[MAX_PATH];
     ConvertToWideChar(fullPath4, fullPathW4, MAX_PATH);
+    const char* fileName5 = "Image_Materials\\Road.png";
+    char fullPath5[MAX_PATH];
+    PathCombineA(fullPath5, currentDirectory, fileName5);
+    wchar_t fullPathW5[MAX_PATH];
+    ConvertToWideChar(fullPath5, fullPathW5, MAX_PATH);
     loadimage(&PLAYPNG, fullPathW1);
     loadimage(&HALTPNG, fullPathW2);
     loadimage(&bg, fullPathW3);
     loadimage(&sea, fullPathW4);
+    loadimage(&Road, fullPathW5);
     long long op, l, zhenshu;
     cout << "您好，欢迎进入港口可视化初始化界面" << endl;
     cout << "现在的仿真时间是2024/5/3 00:00:00" << endl;
@@ -188,7 +205,7 @@ int main() {
     cout << "......................................................................................................................." << endl;
     cout << "开始运行!" << endl;
     Clocktime.current_time_t = mktime(&Clocktime.userTime);
-    initgraph(2560, 1600);
+    setFullScreen();
     setbkcolor(WHITE);
     for (int i = l; i <= 6048000; i++) {
         visualization::stop();

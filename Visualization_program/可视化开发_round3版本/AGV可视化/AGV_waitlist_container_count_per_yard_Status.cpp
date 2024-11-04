@@ -34,6 +34,13 @@ AGV_waitlist_container_count_per_yard_Status::AGV_waitlist_container_count_per_y
         ConvertToWideChar(fullPath1, fullPathW, MAX_PATH);
         loadimage(&status[i], fullPathW);
     }
+
+    const char* fileName2 = "Image_Materials\\Yard.png";
+    char fullPath2[MAX_PATH];
+    PathCombineA(fullPath2, currentDirectory, fileName2);
+    wchar_t fullPathW2[MAX_PATH];
+    ConvertToWideChar(fullPath2, fullPathW2, MAX_PATH);
+    loadimage(&Yard, fullPathW2);
 }
 void AGV_waitlist_container_count_per_yard_Status::update(int i, double x, double y) {
     string s, s1;
@@ -41,9 +48,10 @@ void AGV_waitlist_container_count_per_yard_Status::update(int i, double x, doubl
     stringstream ss(s);
     getline(ss, s1, ',');
     getline(ss, s1, ',');
+    putimage(x - 25-10, y + 120, &Yard);
     wstring s_w = L"Contains:" + wstring(s1.begin(), s1.end());
     settextstyle(25, 0, L"Tahoma");
-    outtextxy(x - 25, y + 120, s_w.c_str());
+    outtextxy(x - 25-8, y + 120+1, s_w.c_str());
     getline(ss, s1, ',');
     if (i % 2 == 0) {
         putimage(x - 68, y + 98, &status[imagemp[s1]]);

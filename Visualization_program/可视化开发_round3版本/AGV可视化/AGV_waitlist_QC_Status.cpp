@@ -41,6 +41,12 @@ AGV_waitlist_QC_Status::AGV_waitlist_QC_Status() {
         ConvertToWideChar(fullPath1, fullPathW, MAX_PATH);
         loadimage(&status[i], fullPathW);
     }
+    const char* fileName2 = "Image_Materials\\QuaySide.png";
+    char fullPath2[MAX_PATH];
+    PathCombineA(fullPath2, currentDirectory, fileName2);
+    wchar_t fullPathW2[MAX_PATH];
+    ConvertToWideChar(fullPath2, fullPathW2, MAX_PATH);
+    loadimage(&quayside, fullPathW2);
 }
 void AGV_waitlist_QC_Status::update(int i, double x, double y) {
     string s, s1;
@@ -51,16 +57,17 @@ void AGV_waitlist_QC_Status::update(int i, double x, double y) {
     getline(ss, s1, ',');
     putimage(x, y, &status[imagemp[s1]]);
     int d = 1;
+    putimage(x + 50+1, y, &quayside);
     while (getline(ss, s1, ',')) {
         if (d % 2 != 0) {
             s_w = wstring(s1.begin(), s1.end());
             settextstyle(15, 0, L"Tahoma");
-            outtextxy(x + 50, y + (d - 1) / 2 * 20, s_w.c_str());
+            outtextxy(x + 50+3, y + (d - 1) / 2 * 20+1, s_w.c_str());
         }
         else {
             s_w = wstring(s1.begin(), s1.end());
             settextstyle(15, 0, L"Tahoma");
-            outtextxy(x + 50 + 40, y + (d - 1) / 2 * 20, s_w.c_str());
+            outtextxy(x + 50 + 40+3, y + (d - 1) / 2 * 20+1, s_w.c_str());
         }
         d++;
     }

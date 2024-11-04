@@ -19,6 +19,13 @@ Berth_Vessel::Berth_Vessel() {
     wchar_t fullPathW[MAX_PATH];
     ConvertToWideChar(fullPath1, fullPathW, MAX_PATH);
     loadimage(&vessel, fullPathW);
+
+    const char* fileName2 = "Image_Materials\\berth.png";
+    char fullPath2[MAX_PATH];
+    PathCombineA(fullPath2, currentDirectory, fileName2);
+    wchar_t fullPathW2[MAX_PATH];
+    ConvertToWideChar(fullPath2, fullPathW2, MAX_PATH);
+    loadimage(&berth, fullPathW2);
 }
 void Berth_Vessel::update(int i, double x, double y) {
     string s, s1;
@@ -28,6 +35,7 @@ void Berth_Vessel::update(int i, double x, double y) {
     getline(ss, s1, ',');
 
     getline(ss, s1, ',');
+    putimagePNG(i * 400 + 28, 0, &berth);
     if(!s1.empty()){
         putimagePNG(i * 400 + 30, 0, &vessel);
     }

@@ -8,7 +8,7 @@ using namespace std;
 class AGV_waitlist_container_count_per_yard_Status :public Directory {
 public:
     std::ifstream file;
-    IMAGE status[4];
+    IMAGE status[4],Yard;
     unordered_map<int, string>mp;
     unordered_map<string, int> imagemp;
     AGV_waitlist_container_count_per_yard_Status();

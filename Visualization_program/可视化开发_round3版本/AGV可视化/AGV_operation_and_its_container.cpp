@@ -20,6 +20,15 @@ AGV_operation_and_its_container::AGV_operation_and_its_container() {
     for (int i = 0; i < 12; i++) {
         loadimage(&AGVPNG[i], fullPathW);
     }
+
+    const char* fileName2 = "Image_Materials\\agv1.png";
+    char fullPath2[MAX_PATH];
+    PathCombineA(fullPath2, currentDirectory, fileName2);
+    wchar_t fullPathW2[MAX_PATH];
+    ConvertToWideChar(fullPath2, fullPathW2, MAX_PATH);
+    for (int i = 0; i < 12; i++) {
+        loadimage(&AGVPNG1[i], fullPathW2);
+    }
 }
 void AGV_operation_and_its_container::update(int i, double x, double y) {
     string s,s1;
@@ -31,16 +40,19 @@ void AGV_operation_and_its_container::update(int i, double x, double y) {
     getline(ss, s1, ',');
     y = stod(s1);
     y += 50+20;
-    putimage(x,y, &AGVPNG[i]);
     getline(ss, s1, ',');
     if (s1=="1"||s1=="2") {
+        putimage(x, y, &AGVPNG1[i]);
         if (s1 == "1")settextcolor(BLACK);
         else settextcolor(RED);
         getline(ss, s1);
         wstring s_w = wstring(s1.begin(), s1.end());
-        settextstyle(20, 0, L"Tahoma");
-        outtextxy(x,y+20+20, s_w.c_str());
+        settextstyle(13, 0, L"Tahoma");
+        outtextxy(x+7,y+20+3, s_w.c_str());
         settextcolor(BLACK);
+    }
+    else {
+        putimage(x, y, &AGVPNG[i]);
     }
 }
 void AGV_operation_and_its_container::setfile(int x) {
