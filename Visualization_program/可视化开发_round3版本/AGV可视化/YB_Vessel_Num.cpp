@@ -30,7 +30,7 @@ void YB_Vessel_Num::update(int i, double x, double y) {
         getline(ss, s1, ',');
         s_w = wstring(s1.begin(), s1.end());
         settextstyle(13, 0, L"Tahoma");
-        outtextxy(x - 25 + 26 * (j % 5), y + 150 + 160 + (j) / 5 * 20, s_w.c_str());
+        outtextxy(x - 25 + 26 * (j % 5)-5, y + 150 + 160 + (j) / 5 * 20, s_w.c_str());
     }
 }
 void YB_Vessel_Num::setfile(int x) {
