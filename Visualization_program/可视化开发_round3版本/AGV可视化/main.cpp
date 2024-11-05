@@ -243,6 +243,17 @@ int main() {
             }
         }
         visualization::update();
+        ld++;
+        if (ld == (oneweek)) {
+            ld = 0;
+            lf += 1;
+            Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
+            Agv_operation_and_its_container.setfile(lf);
+            Agv_waitlist_container_count_per_yard_Status.setfile(lf);
+            Agv_waitlist_QC_Status.setfile(lf);
+            berth_Vessel.setfile(lf);
+            Yb_Vessel_Num.setfile(lf);
+        }
         Sleep(zhenshu);
     }
     closegraph();
