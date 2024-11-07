@@ -17,12 +17,23 @@ Change_Speed::Change_Speed() {
         ConvertToWideChar(fullPath1, fullPathW, MAX_PATH);
         loadimage(&pg[i], fullPathW);
     }
+    for (int i = 0; i < 4; i++) {
+        string fileName = "Image_Materials\\zhenshu" + std::to_string(i) + ".png";
+        const char* fileName1 = fileName.c_str();
+        char fullPath1[MAX_PATH];
+        PathCombineA(fullPath1, currentDirectory, fileName1);
+        wchar_t fullPathW[MAX_PATH];
+        ConvertToWideChar(fullPath1, fullPathW, MAX_PATH);
+        loadimage(&zs[i], fullPathW);
+    }
 }
 void Change_Speed::update(int i, double x, double y) {
     putimage(775, 753+22, &pg[0]);
     putimage(825, 753+22, &pg[1]);
     putimage(775, 803+22, &pg[2]);
     putimage(825, 803+22, &pg[3]);
+    putimage(775, 703 + 22, &zs[0]);
+    putimage(825, 703 + 22, &zs[1]);
     if (tt == 1) {
         putimage(775, 753+22, &pg[4]);
     }
@@ -34,6 +45,12 @@ void Change_Speed::update(int i, double x, double y) {
     }
     else if (tt == 100) {
         putimage(825, 803+22, &pg[7]);
+    }
+    if (zhenshu == 1000) {
+        putimage(775, 703 + 22, &zs[2]);
+    }
+    else if (zhenshu == 100) {
+        putimage(825, 703 + 22, &zs[3]);
     }
     if (i == 0) {
         settextcolor(BLACK);
@@ -47,6 +64,7 @@ void Change_Speed::change(ExMessage msg) {
     if (msg.message == WM_LBUTTONDOWN) {
         if (msg.x >= 775 && msg.x <= 815 && msg.y >= 753+22 && msg.y <= 793+22) {
             tt = 1;
+            zhenshu = 0;
         }
         else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 753 + 22 && msg.y <= 793 + 22) {
             tt = 5;
@@ -56,6 +74,12 @@ void Change_Speed::change(ExMessage msg) {
         }
         else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 803 + 22 && msg.y <= 843 + 22) {
             tt = 100;
+        }
+        else if (msg.x >= 775 && msg.x <= 815 && msg.y >= 703 + 22 && msg.y <= 743 + 22) {
+            zhenshu = 1000;
+        }
+        else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 703 + 22 && msg.y <= 743 + 22) {
+            zhenshu = 100;
         }
     }
 }

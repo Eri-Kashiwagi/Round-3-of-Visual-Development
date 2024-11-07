@@ -50,9 +50,21 @@ void AGV_operation_and_its_container::update(int i, double x, double y) {
         settextstyle(13, 0, L"Tahoma");
         outtextxy(x+7,y+20+3, s_w.c_str());
         settextcolor(BLACK);
+        string s2 = to_string(i);
+        s2 = "AGV" + s2;
+        s_w = wstring(s2.begin(), s2.end());
+        settextstyle(11, 0, L"Tahoma");
+        outtextxy(x + 16, y + 20 + 27, s_w.c_str());
+        settextcolor(BLACK);
     }
     else {
         putimage(x, y, &AGVPNG[i]);
+        string s2 = to_string(i);
+        s2 = "AGV" + s2;
+        wstring s_w = wstring(s2.begin(), s2.end());
+        settextstyle(11, 0, L"Tahoma");
+        outtextxy(x + 16, y + 20 + 27, s_w.c_str());
+        settextcolor(BLACK);
     }
 }
 void AGV_operation_and_its_container::setfile(int x) {

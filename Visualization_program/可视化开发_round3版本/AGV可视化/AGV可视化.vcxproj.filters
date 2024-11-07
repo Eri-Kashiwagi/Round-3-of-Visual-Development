@@ -67,7 +67,7 @@
       <Filter>源文件\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Change_Speed.cpp">
-      <Filter>源文件\Entity</Filter>
+      <Filter>源文件\Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,7 +111,7 @@
       <Filter>头文件\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Change_Speed.h">
-      <Filter>头文件\Entity</Filter>
+      <Filter>头文件\Tool</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

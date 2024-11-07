@@ -42,6 +42,8 @@ IMAGE sea;
 IMAGE Road;
 int TimeMax = 6048000;
 int oneweek = 604800;
+int ld=0;
+long long op, l;
 class visualization {
 public:
     static void update();
@@ -144,7 +146,6 @@ int main() {
     loadimage(&bg, fullPathW3);
     loadimage(&sea, fullPathW4);
     loadimage(&Road, fullPathW5);
-    long long op, l, zhenshu;
     cout << "您好，欢迎进入港口可视化初始化界面" << endl;
     cout << "现在的仿真时间是2024/5/3 00:00:00" << endl;
     cout << "请你选择期望的时间计算方式：" << endl;
@@ -169,7 +170,7 @@ int main() {
     Agv_waitlist_QC_Status.setfile(lf);
     berth_Vessel.setfile(lf);
     Yb_Vessel_Num.setfile(lf);
-    int ld = l % (oneweek);
+    ld = l % (oneweek);
     for (int i = 0; i < ld; i++) {
         for (int j = 0; j < 16; j++) {
             if (j < 12) {
@@ -191,7 +192,7 @@ int main() {
     }
     cout << endl;
     cout << "请输入你期望的界面帧数(如果要加速请输入0):";
-    cin >> zhenshu;
+    cin >> change_speed.zhenshu;
     cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
     cout << "请稍等，正在初始化......................................................................................................" << endl;
     cout << endl;
@@ -254,7 +255,10 @@ int main() {
             berth_Vessel.setfile(lf);
             Yb_Vessel_Num.setfile(lf);
         }
-        Sleep(zhenshu);
+        for (int i = 1; i <= change_speed.zhenshu*50000; i++) {
+            visualization::stop();
+            if (visualization::stopflag)break;
+        }
     }
     closegraph();
     return 0;
