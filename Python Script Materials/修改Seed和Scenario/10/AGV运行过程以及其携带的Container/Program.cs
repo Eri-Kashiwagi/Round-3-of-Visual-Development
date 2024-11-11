@@ -40,84 +40,16 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
                 DirectoryInfo parentInfo = Directory.GetParent(parentDirectory);
                 parentDirectory = parentInfo.FullName;
             }
-            string filePath1 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath1 = Path.Combine(filePath1, "AGV_operation_and_its_container1.txt");
-            using (StreamWriter writer = new StreamWriter(filePath1))
+            string calculatedDataDirectory = Path.Combine(parentDirectory, "Calculated_Data");
+            for (int i = 1; i <= 70; i++)
             {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
-            }
+                string filePath = Path.Combine(calculatedDataDirectory, $"AGV_operation_and_its_container{i}.txt");
 
-            string filePath2 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath2 = Path.Combine(filePath2, "AGV_operation_and_its_container2.txt");
-            using (StreamWriter writer = new StreamWriter(filePath2))
-            {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
-            }
-
-            string filePath3 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath3 = Path.Combine(filePath3, "AGV_operation_and_its_container3.txt");
-            using (StreamWriter writer = new StreamWriter(filePath3))
-            {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
-            }
-
-            string filePath4 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath4 = Path.Combine(filePath4, "AGV_operation_and_its_container4.txt");
-            using (StreamWriter writer = new StreamWriter(filePath4))
-            {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
-            }
-
-            string filePath5 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath5 = Path.Combine(filePath5, "AGV_operation_and_its_container5.txt");
-            using (StreamWriter writer = new StreamWriter(filePath5))
-            {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
-            }
-
-            string filePath6 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath6 = Path.Combine(filePath6, "AGV_operation_and_its_container6.txt");
-            using (StreamWriter writer = new StreamWriter(filePath6))
-            {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
-            }
-
-            string filePath7 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath7 = Path.Combine(filePath7, "AGV_operation_and_its_container7.txt");
-            using (StreamWriter writer = new StreamWriter(filePath7))
-            {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
-            }
-
-            string filePath8 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath8 = Path.Combine(filePath8, "AGV_operation_and_its_container8.txt");
-            using (StreamWriter writer = new StreamWriter(filePath8))
-            {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
-            }
-
-            string filePath9 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath9 = Path.Combine(filePath9, "AGV_operation_and_its_container9.txt");
-            using (StreamWriter writer = new StreamWriter(filePath9))
-            {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
-            }
-
-            string filePath10 = Path.Combine(parentDirectory, "Calculated_Data");
-            filePath10 = Path.Combine(filePath10, "AGV_operation_and_its_container10.txt");
-            using (StreamWriter writer = new StreamWriter(filePath10))
-            {
-                Console.SetOut(writer);
-                WSCPort.Run(TimeSpan.FromDays(7 * WSCPort.RunningWeeks / 10));
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    Console.SetOut(writer);
+                    WSCPort.Run(TimeSpan.FromDays(1));
+                }
             }
             Environment.Exit(0);
             for (int i = 0; i < WSCPort.Vessels.Count; i++)

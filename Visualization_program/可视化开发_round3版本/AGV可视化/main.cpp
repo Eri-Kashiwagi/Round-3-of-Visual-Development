@@ -40,9 +40,13 @@ IMAGE PLAYPNG;
 IMAGE HALTPNG;
 IMAGE sea;
 IMAGE Road;
+IMAGE hasten;
+IMAGE decelerate;
+IMAGE decelerate1;
+IMAGE hasten1;
 int TimeMax = 6048000;
-int oneweek = 604800;
-int ld=0;
+int oneday = 86400;
+int ld=0,lf=0;
 long long op, l;
 class visualization {
 public:
@@ -60,7 +64,45 @@ void visualization::stop() {
                 else stopflag = false;
             }
         }
-        if (stopflag == true)change_speed.change(msg);
+        if (stopflag == true) {
+            change_speed.change(msg);
+            if (msg.message == WM_LBUTTONDOWN) {
+                if (msg.x >= 768 && msg.x <= 818 && msg.y >= 647 && msg.y <= 717) {
+                    putimage(768, 647, &decelerate1);
+                    ld = 0;
+                    lf--;
+                    Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
+                    Agv_operation_and_its_container.setfile(lf);
+                    Agv_waitlist_container_count_per_yard_Status.setfile(lf);
+                    Agv_waitlist_QC_Status.setfile(lf);
+                    berth_Vessel.setfile(lf);
+                    Yb_Vessel_Num.setfile(lf);
+                    ClockTime temp;
+                    time_t userTimeT = std::mktime(&temp.userTime);
+                    time_t newTimeT = userTimeT + (lf-1)* oneday;
+                    Clocktime.update(difftime(newTimeT,Clocktime.current_time_t),0,0);
+                    Sleep(100);
+                    putimage(768, 647, &decelerate);
+                }
+                else if (msg.x >= 823 && msg.x <= 873 && msg.y >= 647 && msg.y <= 717) {
+                    putimage(823, 647, &hasten1);
+                    ld = 0;
+                    lf++;
+                    Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
+                    Agv_operation_and_its_container.setfile(lf);
+                    Agv_waitlist_container_count_per_yard_Status.setfile(lf);
+                    Agv_waitlist_QC_Status.setfile(lf);
+                    berth_Vessel.setfile(lf);
+                    Yb_Vessel_Num.setfile(lf);
+                    ClockTime temp;
+                    time_t userTimeT = std::mktime(&temp.userTime);
+                    time_t newTimeT = userTimeT + (lf - 1) * oneday;
+                    Clocktime.update(difftime(newTimeT, Clocktime.current_time_t), 0, 0);
+                    Sleep(100);
+                    putimage(823, 647, &hasten);
+                }
+            }
+        }
     }
 }
 
@@ -77,6 +119,8 @@ void visualization::update() {
     putimage(0, 0, &sea);
     putimage(0, 68, &Road);
     putimagePNG(770, 848+22, &HALTPNG);
+    putimage(768, 647, &decelerate);
+    putimage(823, 647, &hasten);
     for (int i = 0; i < 16; i++) {
         if (i < 12) {
             if (i < 4) {
@@ -141,11 +185,35 @@ int main() {
     PathCombineA(fullPath5, currentDirectory, fileName5);
     wchar_t fullPathW5[MAX_PATH];
     ConvertToWideChar(fullPath5, fullPathW5, MAX_PATH);
+    const char* fileName6 = "Image_Materials\\hasten.png";
+    char fullPath6[MAX_PATH];
+    PathCombineA(fullPath6, currentDirectory, fileName6);
+    wchar_t fullPathW6[MAX_PATH];
+    ConvertToWideChar(fullPath6, fullPathW6, MAX_PATH);
+    const char* fileName7 = "Image_Materials\\decelerate.png";
+    char fullPath7[MAX_PATH];
+    PathCombineA(fullPath7, currentDirectory, fileName7);
+    wchar_t fullPathW7[MAX_PATH];
+    ConvertToWideChar(fullPath7, fullPathW7, MAX_PATH);
+    const char* fileName8 = "Image_Materials\\hasten1.png";
+    char fullPath8[MAX_PATH];
+    PathCombineA(fullPath8, currentDirectory, fileName8);
+    wchar_t fullPathW8[MAX_PATH];
+    ConvertToWideChar(fullPath8, fullPathW8, MAX_PATH);
+    const char* fileName9 = "Image_Materials\\decelerate1.png";
+    char fullPath9[MAX_PATH];
+    PathCombineA(fullPath9, currentDirectory, fileName9);
+    wchar_t fullPathW9[MAX_PATH];
+    ConvertToWideChar(fullPath9, fullPathW9, MAX_PATH);
     loadimage(&PLAYPNG, fullPathW1);
     loadimage(&HALTPNG, fullPathW2);
     loadimage(&bg, fullPathW3);
     loadimage(&sea, fullPathW4);
     loadimage(&Road, fullPathW5);
+    loadimage(&hasten, fullPathW6);
+    loadimage(&decelerate, fullPathW7);
+    loadimage(&hasten1, fullPathW8);
+    loadimage(&decelerate1, fullPathW9);
     cout << "您好，欢迎进入港口可视化初始化界面" << endl;
     cout << "现在的仿真时间是2024/5/3 00:00:00" << endl;
     cout << "请你选择期望的时间计算方式：" << endl;
@@ -163,14 +231,14 @@ int main() {
     cout << "请稍等，正在初始化......................................................................................................" << endl;
     Sleep(1000);
     string s;
-    int lf = l / oneweek + 1;
+    lf = l / oneday + 1;
     Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
     Agv_operation_and_its_container.setfile(lf);
     Agv_waitlist_container_count_per_yard_Status.setfile(lf);
     Agv_waitlist_QC_Status.setfile(lf);
     berth_Vessel.setfile(lf);
     Yb_Vessel_Num.setfile(lf);
-    ld = l % (oneweek);
+    ld = l % (oneday);
     for (int i = 0; i < ld; i++) {
         for (int j = 0; j < 16; j++) {
             if (j < 12) {
@@ -232,7 +300,7 @@ int main() {
             }
             getline(Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.file, s);
             ld++;
-            if (ld == (oneweek)) {
+            if (ld == (oneday)) {
                 ld = 0;
                 lf += 1;
                 Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
@@ -245,7 +313,7 @@ int main() {
         }
         visualization::update();
         ld++;
-        if (ld == (oneweek)) {
+        if (ld == (oneday)) {
             ld = 0;
             lf += 1;
             Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
