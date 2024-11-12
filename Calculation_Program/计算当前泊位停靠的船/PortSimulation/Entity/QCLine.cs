@@ -8,6 +8,7 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation.Entity
     {
         public string Id;
         public Vessel ServedVessel;
+        public string status;
         public Dictionary<string, int> DischargingContainersInformation = new Dictionary<string, int>();//orig,destination, and quantity of containers
         public Dictionary<string, int> LoadingContainersInformation = new Dictionary<string, int>();//orig,destination, and quantity of containers
         public override string ToString()
@@ -28,9 +29,11 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation.Entity
             {
                 DateTime clockTime = ClockTime;
                 QCLine qcLine = new QCLine { Id = $"({clockTime},{vessel.Id})", ServedVessel = vessel };
+                vessel.UsedQCLine = qcLine;
                 qcLine.DischargingContainersInformation = new Dictionary<string, int>(vessel.DischargingContainersInformation);
                 qcLine.LoadingContainersInformation = vessel.LoadingContainersInformation == null? null : new Dictionary<string, int>(vessel.LoadingContainersInformation);
                 RequestToStart(qcLine);
+                qcLine.status = "Discharging";
             }
 
             public override void TryFinish(Object obj)
@@ -78,7 +81,13 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation.Entity
                 NeedExtTryFinish = true;
                 TimeSpan = TimeSpan.Zero;
             }
-
+            public override void RequestToStart(QCLine load)
+            {
+                if (_debugMode) Console.WriteLine($"{ClockTime.ToString("yyyy-MM-dd HH:mm:ss")}  {ActivityName}.RequestToStart({load})");
+                PendingList.Add(load);
+                Schedule(() => AttemptToStart(), TimeSpan.FromMicroseconds(1));
+                load.status = "Loading";
+            }
 
             public override void AttemptToFinish(QCLine qCLine)
             {

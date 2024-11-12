@@ -217,7 +217,24 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
             foreach (var berth in Berths)
             {
                 Console.Write($"{ClockTime.ToString("yyyy-MM-dd HH:mm:ss")},");
-                if(berth.BerthedVessel!=null) Console.Write($"{berth.BerthedVessel.Id},");
+                if(berth.BerthedVessel!=null)
+                {
+                    Console.Write($"{berth.BerthedVessel.Id},{berth.BerthedVessel.UsedQCLine.status},");
+                    if(berth.BerthedVessel.UsedQCLine.status == "Discharging")
+                    {
+                        foreach (var info in berth.BerthedVessel.DischargingContainersInformation)
+                        {
+                            Console.Write($"{info.Value},");
+                        }
+                    }
+                    else if((berth.BerthedVessel.UsedQCLine.status == "Loading"))
+                    {
+                        foreach (var info in berth.BerthedVessel.UsedQCLine.LoadingContainersInformation)
+                        {
+                            Console.Write($"{info.Value},");
+                        }
+                    }
+                }
                 Console.WriteLine();
             }
         }
