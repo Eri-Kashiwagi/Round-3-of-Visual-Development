@@ -10,6 +10,7 @@
 #include<mmsystem.h>
 #include <windows.h>
 #include <shlwapi.h>
+#include <thread>
 #include "tools.h"    
 #include "vector2.h"  
 #include "AGV_operation_and_its_container.h"
@@ -71,34 +72,56 @@ void visualization::stop() {
                     putimage(768, 647, &decelerate1);
                     ld = 0;
                     lf--;
-                    Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
+                    /*Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
                     Agv_operation_and_its_container.setfile(lf);
                     Agv_waitlist_container_count_per_yard_Status.setfile(lf);
                     Agv_waitlist_QC_Status.setfile(lf);
                     berth_Vessel.setfile(lf);
-                    Yb_Vessel_Num.setfile(lf);
+                    Yb_Vessel_Num.setfile(lf);*/
+                    std::thread t1(&AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::setfile, &Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum, lf);
+                    std::thread t2(&AGV_operation_and_its_container::setfile, &Agv_operation_and_its_container, lf);
+                    std::thread t3(&AGV_waitlist_container_count_per_yard_Status::setfile, &Agv_waitlist_container_count_per_yard_Status, lf);
+                    std::thread t4(&AGV_waitlist_QC_Status::setfile, &Agv_waitlist_QC_Status, lf);
+                    std::thread t5(&Berth_Vessel::setfile, &berth_Vessel, lf);
+                    std::thread t6(&YB_Vessel_Num::setfile, &Yb_Vessel_Num, lf);
+                    t1.join();
+                    t2.join();
+                    t3.join();
+                    t4.join();
+                    t5.join();
+                    t6.join();
                     ClockTime temp;
                     time_t userTimeT = std::mktime(&temp.userTime);
                     time_t newTimeT = userTimeT + (lf-1)* oneday;
                     Clocktime.update(difftime(newTimeT,Clocktime.current_time_t),0,0);
-                    Sleep(100);
                     putimage(768, 647, &decelerate);
                 }
                 else if (msg.x >= 823 && msg.x <= 873 && msg.y >= 647 && msg.y <= 717) {
                     putimage(823, 647, &hasten1);
                     ld = 0;
                     lf++;
-                    Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
+                    /*Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
                     Agv_operation_and_its_container.setfile(lf);
                     Agv_waitlist_container_count_per_yard_Status.setfile(lf);
                     Agv_waitlist_QC_Status.setfile(lf);
                     berth_Vessel.setfile(lf);
-                    Yb_Vessel_Num.setfile(lf);
+                    Yb_Vessel_Num.setfile(lf);*/
+                    std::thread t1(&AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::setfile, &Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum, lf);
+                    std::thread t2(&AGV_operation_and_its_container::setfile, &Agv_operation_and_its_container, lf);
+                    std::thread t3(&AGV_waitlist_container_count_per_yard_Status::setfile, &Agv_waitlist_container_count_per_yard_Status, lf);
+                    std::thread t4(&AGV_waitlist_QC_Status::setfile, &Agv_waitlist_QC_Status, lf);
+                    std::thread t5(&Berth_Vessel::setfile, &berth_Vessel, lf);
+                    std::thread t6(&YB_Vessel_Num::setfile, &Yb_Vessel_Num, lf);
+                    t1.join();
+                    t2.join();
+                    t3.join();
+                    t4.join();
+                    t5.join();
+                    t6.join();
                     ClockTime temp;
                     time_t userTimeT = std::mktime(&temp.userTime);
                     time_t newTimeT = userTimeT + (lf - 1) * oneday;
                     Clocktime.update(difftime(newTimeT, Clocktime.current_time_t), 0, 0);
-                    Sleep(100);
                     putimage(823, 647, &hasten);
                 }
             }
@@ -232,12 +255,24 @@ int main() {
     Sleep(1000);
     string s;
     lf = l / oneday + 1;
-    Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
+    std::thread t1(&AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::setfile, &Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum, lf);
+    std::thread t2(&AGV_operation_and_its_container::setfile, &Agv_operation_and_its_container, lf);
+    std::thread t3(&AGV_waitlist_container_count_per_yard_Status::setfile, &Agv_waitlist_container_count_per_yard_Status, lf);
+    std::thread t4(&AGV_waitlist_QC_Status::setfile, &Agv_waitlist_QC_Status, lf);
+    std::thread t5(&Berth_Vessel::setfile, &berth_Vessel, lf);
+    std::thread t6(&YB_Vessel_Num::setfile, &Yb_Vessel_Num, lf);
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+    t5.join();
+    t6.join();
+    /*Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
     Agv_operation_and_its_container.setfile(lf);
     Agv_waitlist_container_count_per_yard_Status.setfile(lf);
     Agv_waitlist_QC_Status.setfile(lf);
     berth_Vessel.setfile(lf);
-    Yb_Vessel_Num.setfile(lf);
+    Yb_Vessel_Num.setfile(lf);*/
     ld = l % (oneday);
     for (int i = 0; i < ld; i++) {
         for (int j = 0; j < 16; j++) {
@@ -303,12 +338,24 @@ int main() {
             if (ld == (oneday)) {
                 ld = 0;
                 lf += 1;
-                Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
+                /*Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
                 Agv_operation_and_its_container.setfile(lf);
                 Agv_waitlist_container_count_per_yard_Status.setfile(lf);
                 Agv_waitlist_QC_Status.setfile(lf);
                 berth_Vessel.setfile(lf);
-                Yb_Vessel_Num.setfile(lf);
+                Yb_Vessel_Num.setfile(lf);*/
+                std::thread t1(&AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::setfile, &Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum, lf);
+                std::thread t2(&AGV_operation_and_its_container::setfile, &Agv_operation_and_its_container, lf);
+                std::thread t3(&AGV_waitlist_container_count_per_yard_Status::setfile, &Agv_waitlist_container_count_per_yard_Status, lf);
+                std::thread t4(&AGV_waitlist_QC_Status::setfile, &Agv_waitlist_QC_Status, lf);
+                std::thread t5(&Berth_Vessel::setfile, &berth_Vessel, lf);
+                std::thread t6(&YB_Vessel_Num::setfile, &Yb_Vessel_Num, lf);
+                t1.join();
+                t2.join();
+                t3.join();
+                t4.join();
+                t5.join();
+                t6.join();
             }
         }
         visualization::update();
@@ -316,12 +363,24 @@ int main() {
         if (ld == (oneday)) {
             ld = 0;
             lf += 1;
-            Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
+            /*Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.setfile(lf);
             Agv_operation_and_its_container.setfile(lf);
             Agv_waitlist_container_count_per_yard_Status.setfile(lf);
             Agv_waitlist_QC_Status.setfile(lf);
             berth_Vessel.setfile(lf);
-            Yb_Vessel_Num.setfile(lf);
+            Yb_Vessel_Num.setfile(lf);*/
+            std::thread t1(&AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::setfile, &Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum, lf);
+            std::thread t2(&AGV_operation_and_its_container::setfile, &Agv_operation_and_its_container, lf);
+            std::thread t3(&AGV_waitlist_container_count_per_yard_Status::setfile, &Agv_waitlist_container_count_per_yard_Status, lf);
+            std::thread t4(&AGV_waitlist_QC_Status::setfile, &Agv_waitlist_QC_Status, lf);
+            std::thread t5(&Berth_Vessel::setfile, &berth_Vessel, lf);
+            std::thread t6(&YB_Vessel_Num::setfile, &Yb_Vessel_Num, lf);
+            t1.join();
+            t2.join();
+            t3.join();
+            t4.join();
+            t5.join();
+            t6.join();
         }
         for (int i = 1; i <= change_speed.zhenshu*50000; i++) {
             visualization::stop();

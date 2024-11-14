@@ -43,13 +43,25 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
             string calculatedDataDirectory = Path.Combine(parentDirectory, "Calculated_Data");
             for (int i = 1; i <= 70; i++)
             {
-                string filePath = Path.Combine(calculatedDataDirectory, $"Berth_Vessel{i}.txt");
-
-                using (StreamWriter writer = new StreamWriter(filePath))
+                string txtFileName = $"Berth_Vessel{i}.txt";
+                string txtFilePath = Path.Combine(calculatedDataDirectory, txtFileName);
+                using (StreamWriter writer = new StreamWriter(txtFilePath))
                 {
                     Console.SetOut(writer);
                     WSCPort.Run(TimeSpan.FromDays(1));
                 }
+                Console.SetOut(new StreamWriter(Console.OpenStandardOutput()) { AutoFlush = true });
+                string zipFileName = $"Berth_Vessel{i}.zip";
+                string zipFilePath = Path.Combine(calculatedDataDirectory, zipFileName);
+                if (File.Exists(zipFilePath))
+                {
+                    File.Delete(zipFilePath);
+                }
+                using (ZipArchive zip = ZipFile.Open(zipFilePath, ZipArchiveMode.Create))
+                {
+                    zip.CreateEntryFromFile(txtFilePath, txtFileName, CompressionLevel.Optimal);
+                }
+                File.Delete(txtFilePath);
             }
             Environment.Exit(0);
             for (int i = 0; i < WSCPort.Vessels.Count; i++)

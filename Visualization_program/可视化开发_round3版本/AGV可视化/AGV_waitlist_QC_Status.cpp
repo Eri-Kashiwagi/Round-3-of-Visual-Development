@@ -11,6 +11,10 @@ using namespace std;
 inline void ConvertToWideChar(const char* src, wchar_t* dest, int destSize) {
     MultiByteToWideChar(CP_ACP, 0, src, -1, dest, destSize);
 }
+inline void unzipUsingPowerShell(const string& zipPath, const string& extractPath) {
+    string command = "powershell -Command \"Expand-Archive -Path '" + zipPath + "' -DestinationPath '" + extractPath + "' -Force\"";
+    system(command.c_str());
+}
 AGV_waitlist_QC_Status::AGV_waitlist_QC_Status() {
     mp = {
         {0, "QC"},
@@ -73,8 +77,31 @@ void AGV_waitlist_QC_Status::update(int i, double x, double y) {
     }
 }
 void AGV_waitlist_QC_Status::setfile(int x) {
-    if (file.is_open())file.close();
+    /*if (file.is_open())file.close();
     string ch = to_string(x);
+    string fileName = "Calculated_Data\\AGV_waitlist_QC_Status" + std::to_string(x) + ".txt";
+    const char* fileName1 = fileName.c_str();
+    char fullPath[MAX_PATH];
+    PathCombineA(fullPath, currentDirectory, fileName1);
+    file.open(fullPath);*/
+    if (file.is_open()) {
+        file.close();
+    }
+    for (int i = 1; i <= 70; i++) {
+        string lastfileName = "Calculated_Data\\AGV_waitlist_QC_Status" + std::to_string(i) + ".txt";
+        const char* lastfileName1 = lastfileName.c_str();
+        char lastfullPath[MAX_PATH];
+        PathCombineA(lastfullPath, currentDirectory, lastfileName1);
+        remove(lastfullPath);
+    }
+    string zipFileName = "Calculated_Data\\AGV_waitlist_QC_Status" + to_string(x) + ".zip";
+    char zipFullPath[MAX_PATH];
+    PathCombineA(zipFullPath, currentDirectory, zipFileName.c_str());
+    string zipFilePath = zipFullPath;
+    char tempFullPath[MAX_PATH];
+    PathCombineA(tempFullPath, currentDirectory, "Calculated_Data");
+    string tempPath = tempFullPath;
+    unzipUsingPowerShell(zipFilePath, tempFullPath);
     string fileName = "Calculated_Data\\AGV_waitlist_QC_Status" + std::to_string(x) + ".txt";
     const char* fileName1 = fileName.c_str();
     char fullPath[MAX_PATH];
