@@ -112,6 +112,8 @@ if __name__ == "__main__":
     time.sleep(5)
     event_7 = threading.Event()
     thread_7 = threading.Thread(target=run_and_monitor_solution, args=(solution_file_7, "WSC_SimChallenge_2024_Net.exe", event_7))
+    thread_7.start()
+    event_7.wait()
     close_visual_studio()
     print("已完成数据采集，开始可视化仿真")
     time.sleep(5)
