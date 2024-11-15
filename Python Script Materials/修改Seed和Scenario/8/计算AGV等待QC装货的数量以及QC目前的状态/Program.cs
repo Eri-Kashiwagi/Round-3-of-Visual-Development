@@ -5,7 +5,7 @@ using System;
 using WSC_SimChallenge_2024_Net.StrategyMaking;
 using MathNet.Numerics.Random;
 using System.Threading;
-
+using System.IO.Compression;
 namespace WSC_SimChallenge_2024_Net.PortSimulation
 {
     class Simulation
