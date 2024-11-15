@@ -12,7 +12,8 @@ solution_file_3 = os.path.join(current_directory, r"Calculation_Program\计算AG
 solution_file_4 = os.path.join(current_directory, r"Calculation_Program\计算AGV空闲的数量,Delayed以及Waiting船舶数量\WSC_SimChallenge_2024_Net.sln")
 solution_file_5 = os.path.join(current_directory, r"Calculation_Program\AGV运行过程以及其携带的Container\WSC_SimChallenge_2024_Net.sln")
 solution_file_6 = os.path.join(current_directory, r"Calculation_Program\计算在堆场中每条船待装载的Container的数量\WSC_SimChallenge_2024_Net.sln")
-solution_file_7 = os.path.join(current_directory, r"Visualization_program\可视化开发_round3版本\港口可视化开发.sln")
+solution_file_7 = os.path.join(current_directory, r"Calculation_Program\计算所有船舶到达时间\WSC_SimChallenge_2024_Net.sln.sln")
+solution_file_8 = os.path.join(current_directory, r"Visualization_program\可视化开发_round3版本\港口可视化开发.sln")
 
 def open_solution_with_default_program(solution_file):
     try:
@@ -108,9 +109,12 @@ if __name__ == "__main__":
     event_5.wait()
     event_6.wait()
     close_visual_studio()
-    print("已完成数据采集，开始可视化仿真")
-    
     time.sleep(5)
     event_7 = threading.Event()
-    thread_7 =threading.Thread(target=run_and_monitor_solution, args=(solution_file_7, "WSC_SimChallenge_2024_Net.exe", event_7))
-    thread_7.start()
+    thread_7 = threading.Thread(target=run_and_monitor_solution, args=(solution_file_7, "WSC_SimChallenge_2024_Net.exe", event_7))
+    close_visual_studio()
+    print("已完成数据采集，开始可视化仿真")
+    time.sleep(5)
+    event_8 = threading.Event()
+    thread_8 =threading.Thread(target=run_and_monitor_solution, args=(solution_file_8, "WSC_SimChallenge_2024_Net.exe", event_8))
+    thread_8.start()

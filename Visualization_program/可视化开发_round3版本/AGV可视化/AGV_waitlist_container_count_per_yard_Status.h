@@ -14,5 +14,7 @@ public:
     AGV_waitlist_container_count_per_yard_Status();
     ~AGV_waitlist_container_count_per_yard_Status();
     void update(int i, double x, double y);
-    void setfile(int x);
+    void unzip_use_file(int x);
+    void unzip_file(int x);
+    void use_file(int x);
 };

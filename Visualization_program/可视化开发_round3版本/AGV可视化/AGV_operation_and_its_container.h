@@ -10,7 +10,9 @@ public:
     std::ifstream file; 
     IMAGE AGVPNG[12],AGVPNG1[12]; 
     void update(int i, double x, double y);
-    void setfile(int x);
+    void unzip_use_file(int x);
+    void unzip_file(int x);
+    void use_file(int x);
     AGV_operation_and_its_container();
     ~AGV_operation_and_its_container();
 };

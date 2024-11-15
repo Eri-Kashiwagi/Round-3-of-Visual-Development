@@ -13,6 +13,8 @@ public:
     unordered_map<int, string>mp;
     unordered_map<string, int> imagemp;
     void update(int i, double x, double y);
-    void setfile(int x);
+    void unzip_use_file(int x);
+    void unzip_file(int x);
+    void use_file(int x);
     ~AGV_waitlist_QC_Status();
 };

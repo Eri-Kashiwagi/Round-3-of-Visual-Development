@@ -24,7 +24,8 @@ def change():
             os.path.join(current_directory, r"Calculation_Program\计算AGV等待YC操作的列表,每个堆场目前堆存Container的数量以及当前堆场YC的状态\StrategyMaking\DecisionMaker.cs"),
             os.path.join(current_directory, r"Calculation_Program\计算AGV空闲的数量,Delayed以及Waiting船舶数量\StrategyMaking\DecisionMaker.cs"),
             os.path.join(current_directory, r"Calculation_Program\计算当前泊位停靠的船\StrategyMaking\DecisionMaker.cs"),
-            os.path.join(current_directory, r"Calculation_Program\计算在堆场中每条船待装载的Container的数量\StrategyMaking\DecisionMaker.cs")
+            os.path.join(current_directory, r"Calculation_Program\计算在堆场中每条船待装载的Container的数量\StrategyMaking\DecisionMaker.cs"),
+            os.path.join(current_directory, r"Calculation_Program\计算所有船舶到达时间\StrategyMaking\DecisionMaker.cs")
         ]
         for target in target_files:
             copy_file(source_file, target)

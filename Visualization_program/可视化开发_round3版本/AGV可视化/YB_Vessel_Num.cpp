@@ -10,7 +10,7 @@ using namespace std;
 inline void ConvertToWideChar(const char* src, wchar_t* dest, int destSize) {
     MultiByteToWideChar(CP_ACP, 0, src, -1, dest, destSize);
 }
-inline void unzipUsingPowerShell(const string& zipPath, const string& extractPath) {
+inline void unzip_fileUsingPowerShell(const string& zipPath, const string& extractPath) {
     string command = "powershell -Command \"Expand-Archive -Path '" + zipPath + "' -DestinationPath '" + extractPath + "' -Force\"";
     system(command.c_str());
 }
@@ -37,14 +37,7 @@ void YB_Vessel_Num::update(int i, double x, double y) {
         outtextxy(x - 25 + 26 * (j % 5)-5, y + 150 + 160 + (j) / 5 * 20, s_w.c_str());
     }
 }
-void YB_Vessel_Num::setfile(int x) {
-    /*if (file.is_open())file.close();
-    string ch = to_string(x);
-    string fileName = "Calculated_Data\\YB_Vessel_Num" + std::to_string(x) + ".txt";
-    const char* fileName1 = fileName.c_str();
-    char fullPath[MAX_PATH];
-    PathCombineA(fullPath, currentDirectory, fileName1);
-    file.open(fullPath);*/
+void YB_Vessel_Num::unzip_use_file(int x) {
     if (file.is_open()) {
         file.close();
     }
@@ -62,7 +55,28 @@ void YB_Vessel_Num::setfile(int x) {
     char tempFullPath[MAX_PATH];
     PathCombineA(tempFullPath, currentDirectory, "Calculated_Data");
     string tempPath = tempFullPath;
-    unzipUsingPowerShell(zipFilePath, tempFullPath);
+    unzip_fileUsingPowerShell(zipFilePath, tempFullPath);
+    string fileName = "Calculated_Data\\YB_Vessel_Num" + std::to_string(x) + ".txt";
+    const char* fileName1 = fileName.c_str();
+    char fullPath[MAX_PATH];
+    PathCombineA(fullPath, currentDirectory, fileName1);
+    file.open(fullPath);
+}
+void YB_Vessel_Num::unzip_file(int x) {
+    x += 1;
+    if (x > 71 || x < 1)return;
+    string zipFileName = "Calculated_Data\\YB_Vessel_Num" + to_string(x) + ".zip";
+    char zipFullPath[MAX_PATH];
+    PathCombineA(zipFullPath, currentDirectory, zipFileName.c_str());
+    string zipFilePath = zipFullPath;
+    char tempFullPath[MAX_PATH];
+    PathCombineA(tempFullPath, currentDirectory, "Calculated_Data");
+    string tempPath = tempFullPath;
+    unzip_fileUsingPowerShell(zipFilePath, tempFullPath);
+}
+void YB_Vessel_Num::use_file(int x) {
+    if (file.is_open())file.close();
+    string ch = to_string(x);
     string fileName = "Calculated_Data\\YB_Vessel_Num" + std::to_string(x) + ".txt";
     const char* fileName1 = fileName.c_str();
     char fullPath[MAX_PATH];

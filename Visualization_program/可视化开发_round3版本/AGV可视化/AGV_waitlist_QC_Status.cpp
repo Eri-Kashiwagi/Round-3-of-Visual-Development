@@ -11,7 +11,7 @@ using namespace std;
 inline void ConvertToWideChar(const char* src, wchar_t* dest, int destSize) {
     MultiByteToWideChar(CP_ACP, 0, src, -1, dest, destSize);
 }
-inline void unzipUsingPowerShell(const string& zipPath, const string& extractPath) {
+inline void unzip_fileUsingPowerShell(const string& zipPath, const string& extractPath) {
     string command = "powershell -Command \"Expand-Archive -Path '" + zipPath + "' -DestinationPath '" + extractPath + "' -Force\"";
     system(command.c_str());
 }
@@ -76,14 +76,7 @@ void AGV_waitlist_QC_Status::update(int i, double x, double y) {
         d++;
     }
 }
-void AGV_waitlist_QC_Status::setfile(int x) {
-    /*if (file.is_open())file.close();
-    string ch = to_string(x);
-    string fileName = "Calculated_Data\\AGV_waitlist_QC_Status" + std::to_string(x) + ".txt";
-    const char* fileName1 = fileName.c_str();
-    char fullPath[MAX_PATH];
-    PathCombineA(fullPath, currentDirectory, fileName1);
-    file.open(fullPath);*/
+void AGV_waitlist_QC_Status::unzip_use_file(int x) {
     if (file.is_open()) {
         file.close();
     }
@@ -101,7 +94,28 @@ void AGV_waitlist_QC_Status::setfile(int x) {
     char tempFullPath[MAX_PATH];
     PathCombineA(tempFullPath, currentDirectory, "Calculated_Data");
     string tempPath = tempFullPath;
-    unzipUsingPowerShell(zipFilePath, tempFullPath);
+    unzip_fileUsingPowerShell(zipFilePath, tempFullPath);
+    string fileName = "Calculated_Data\\AGV_waitlist_QC_Status" + std::to_string(x) + ".txt";
+    const char* fileName1 = fileName.c_str();
+    char fullPath[MAX_PATH];
+    PathCombineA(fullPath, currentDirectory, fileName1);
+    file.open(fullPath);
+}
+void AGV_waitlist_QC_Status::unzip_file(int x) {
+    x += 1;
+    if (x > 71 || x < 1)return;
+    string zipFileName = "Calculated_Data\\AGV_waitlist_QC_Status" + to_string(x) + ".zip";
+    char zipFullPath[MAX_PATH];
+    PathCombineA(zipFullPath, currentDirectory, zipFileName.c_str());
+    string zipFilePath = zipFullPath;
+    char tempFullPath[MAX_PATH];
+    PathCombineA(tempFullPath, currentDirectory, "Calculated_Data");
+    string tempPath = tempFullPath;
+    unzip_fileUsingPowerShell(zipFilePath, tempFullPath);
+}
+void AGV_waitlist_QC_Status::use_file(int x) {
+    if (file.is_open())file.close();
+    string ch = to_string(x);
     string fileName = "Calculated_Data\\AGV_waitlist_QC_Status" + std::to_string(x) + ".txt";
     const char* fileName1 = fileName.c_str();
     char fullPath[MAX_PATH];

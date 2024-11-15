@@ -11,7 +11,7 @@ using namespace std;
 inline void ConvertToWideChar(const char* src, wchar_t* dest, int destSize) {
     MultiByteToWideChar(CP_ACP, 0, src, -1, dest, destSize);
 }
-inline void unzipUsingPowerShell(const string& zipPath, const string& extractPath) {
+inline void unzip_fileUsingPowerShell(const string& zipPath, const string& extractPath) {
     string command = "powershell -Command \"Expand-Archive -Path '" + zipPath + "' -DestinationPath '" + extractPath + "' -Force\"";
     system(command.c_str());
 }
@@ -70,7 +70,7 @@ void AGV_operation_and_its_container::update(int i, double x, double y) {
         settextcolor(BLACK);
     }
 }
-void AGV_operation_and_its_container::setfile(int x) {
+void AGV_operation_and_its_container::unzip_use_file(int x) {
    /* if (file.is_open())file.close();
     string ch = to_string(x);
     string fileName = "Calculated_Data\\AGV_operation_and_its_container" + std::to_string(x) + ".txt";
@@ -95,12 +95,32 @@ void AGV_operation_and_its_container::setfile(int x) {
     char tempFullPath[MAX_PATH];
     PathCombineA(tempFullPath, currentDirectory, "Calculated_Data");
     string tempPath = tempFullPath;
-    unzipUsingPowerShell(zipFilePath, tempFullPath);
+    unzip_fileUsingPowerShell(zipFilePath, tempFullPath);
     string fileName = "Calculated_Data\\AGV_operation_and_its_container" + std::to_string(x) + ".txt";
     const char* fileName1 = fileName.c_str();
     char fullPath[MAX_PATH];
     PathCombineA(fullPath, currentDirectory, fileName1);
     file.open(fullPath); 
+}
+void AGV_operation_and_its_container::unzip_file(int x) {
+    x += 1;
+    if (x > 71 || x < 1)return;
+    string zipFileName = "Calculated_Data\\AGV_operation_and_its_container" + to_string(x) + ".zip";
+    char zipFullPath[MAX_PATH];
+    PathCombineA(zipFullPath, currentDirectory, zipFileName.c_str());
+    string zipFilePath = zipFullPath;
+    char tempFullPath[MAX_PATH];
+    PathCombineA(tempFullPath, currentDirectory, "Calculated_Data");
+    string tempPath = tempFullPath;
+    unzip_fileUsingPowerShell(zipFilePath, tempFullPath);
+}
+void AGV_operation_and_its_container::use_file(int x) {
+    if (file.is_open())file.close();
+    string fileName = "Calculated_Data\\AGV_operation_and_its_container" + std::to_string(x) + ".txt";
+    const char* fileName1 = fileName.c_str();
+    char fullPath[MAX_PATH];
+    PathCombineA(fullPath, currentDirectory, fileName1);
+    file.open(fullPath);
 }
 AGV_operation_and_its_container::~AGV_operation_and_its_container() {
     file.close();
