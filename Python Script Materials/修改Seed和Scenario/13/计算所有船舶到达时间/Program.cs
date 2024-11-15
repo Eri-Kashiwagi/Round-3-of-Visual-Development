@@ -42,27 +42,20 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
                 parentDirectory = parentInfo.FullName;
             }
             string calculatedDataDirectory = Path.Combine(parentDirectory, "Calculated_Data");
-            for (int i = 1; i <= 70; i++)
+            string txtFileName = $"vessel_arrival_time.txt";
+            string txtFilePath = Path.Combine(calculatedDataDirectory, txtFileName);
+            using (StreamWriter writer = new StreamWriter(txtFilePath))
             {
-                string txtFileName = $"YB_Vessel_Num{i}.txt";
-                string txtFilePath = Path.Combine(calculatedDataDirectory, txtFileName);
-                using (StreamWriter writer = new StreamWriter(txtFilePath))
+                Console.SetOut(writer);
+                var sortedList = PortSimModel.getweeks
+                .SelectMany(vessel => vessel.Value, (vessel, entry) => new { Vessel = vessel.Key, Week = entry.Key, Time = entry.Value })
+                .OrderBy(item => item.Time)
+                .ToList();
+
+                foreach (var item in sortedList)
                 {
-                    Console.SetOut(writer);
-                    WSCPort.Run(TimeSpan.FromDays(1));
+                    Console.WriteLine($"Vessel: {item.Vessel}, Week: {item.Week}, Arrival Time: {item.Time.ToString("yyyy-MM-dd HH:mm:ss")}");
                 }
-                Console.SetOut(new StreamWriter(Console.OpenStandardOutput()) { AutoFlush = true });
-                string zipFileName = $"YB_Vessel_Num{i}.zip";
-                string zipFilePath = Path.Combine(calculatedDataDirectory, zipFileName);
-                if (File.Exists(zipFilePath))
-                {
-                    File.Delete(zipFilePath);
-                }
-                using (ZipArchive zip = ZipFile.Open(zipFilePath, ZipArchiveMode.Create))
-                {
-                    zip.CreateEntryFromFile(txtFilePath, txtFileName, CompressionLevel.Optimal);
-                }
-                File.Delete(txtFilePath);
             }
             Environment.Exit(0);
             for (int i = 0; i < WSCPort.Vessels.Count; i++)
