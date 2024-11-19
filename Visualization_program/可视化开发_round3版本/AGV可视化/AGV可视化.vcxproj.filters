@@ -69,6 +69,9 @@
     <ClCompile Include="Change_Speed.cpp">
       <Filter>源文件\Tool</Filter>
     </ClCompile>
+    <ClCompile Include="Vessel_Arrival_Time.cpp">
+      <Filter>源文件\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AGV_operation_and_its_container.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="Change_Speed.h">
       <Filter>头文件\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Vessel_Arrival_Time.h">
+      <Filter>头文件\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

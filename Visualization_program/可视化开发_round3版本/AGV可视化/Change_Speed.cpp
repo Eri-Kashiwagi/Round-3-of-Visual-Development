@@ -28,29 +28,29 @@ Change_Speed::Change_Speed() {
     }
 }
 void Change_Speed::update(int i, double x, double y) {
-    putimage(775, 753+22, &pg[0]);
-    putimage(825, 753+22, &pg[1]);
-    putimage(775, 803+22, &pg[2]);
-    putimage(825, 803+22, &pg[3]);
-    putimage(775, 703 + 22, &zs[0]);
-    putimage(825, 703 + 22, &zs[1]);
+    putimage(775+10, 753+22, &pg[0]);
+    putimage(825+10, 753+22, &pg[1]);
+    putimage(775+10, 803+22, &pg[2]);
+    putimage(825+10, 803+22, &pg[3]);
+    putimage(775+10, 703 + 22, &zs[0]);
+    putimage(825+10, 703 + 22, &zs[1]);
     if (tt == 1) {
-        putimage(775, 753+22, &pg[4]);
+        putimage(775+10, 753+22, &pg[4]);
     }
     else if (tt == 5) {
-        putimage(825, 753+22, &pg[5]);
+        putimage(825+10, 753+22, &pg[5]);
     }
     else if (tt == 10) {
-        putimage(775, 803+22, &pg[6]);
+        putimage(775+10, 803+22, &pg[6]);
     }
     else if (tt == 100) {
-        putimage(825, 803+22, &pg[7]);
+        putimage(825+10, 803+22, &pg[7]);
     }
     if (zhenshu == 1000) {
-        putimage(775, 703 + 22, &zs[2]);
+        putimage(775+10, 703 + 22, &zs[2]);
     }
     else if (zhenshu == 100) {
-        putimage(825, 703 + 22, &zs[3]);
+        putimage(825+10, 703 + 22, &zs[3]);
     }
     if (i == 0) {
         settextcolor(BLACK);
@@ -62,23 +62,23 @@ void Change_Speed::update(int i, double x, double y) {
 }
 void Change_Speed::change(ExMessage msg) {
     if (msg.message == WM_LBUTTONDOWN) {
-        if (msg.x >= 775 && msg.x <= 815 && msg.y >= 753+22 && msg.y <= 793+22) {
+        if (msg.x >= 775+10 && msg.x <= 815+10 && msg.y >= 753+22 && msg.y <= 793+22) {
             tt = 1;
             zhenshu = 0;
         }
-        else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 753 + 22 && msg.y <= 793 + 22) {
+        else if (msg.x >= 825+10 && msg.x <= 865+10&& msg.y >= 753 + 22 && msg.y <= 793 + 22) {
             tt = 5;
         }
-        else if (msg.x >= 775 && msg.x <= 815 && msg.y >= 803 + 22 && msg.y <= 843 + 22) {
+        else if (msg.x >= 775+10 && msg.x <= 815+10 && msg.y >= 803 + 22 && msg.y <= 843 + 22) {
             tt = 10;
         }
-        else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 803 + 22 && msg.y <= 843 + 22) {
+        else if (msg.x >= 825+10 && msg.x <= 865+10 && msg.y >= 803 + 22 && msg.y <= 843 + 22) {
             tt = 100;
         }
-        else if (msg.x >= 775 && msg.x <= 815 && msg.y >= 703 + 22 && msg.y <= 743 + 22) {
+        else if (msg.x >= 775+10 && msg.x <= 815+10 && msg.y >= 703 + 22 && msg.y <= 743 + 22) {
             zhenshu = 1000;
         }
-        else if (msg.x >= 825 && msg.x <= 865 && msg.y >= 703 + 22 && msg.y <= 743 + 22) {
+        else if (msg.x >= 825+10 && msg.x <= 865+10 && msg.y >= 703 + 22 && msg.y <= 743 + 22) {
             zhenshu = 100;
         }
     }

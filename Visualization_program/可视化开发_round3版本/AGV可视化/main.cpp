@@ -24,6 +24,7 @@
 #include "Berth_Vessel.h"
 #include "Directory.h"
 #include"Change_Speed.h"
+#include "Vessel_Arrival_Time.h"
 #pragma comment(lib, "winmm.lib")  
 using namespace std;
 AGV_operation_and_its_container Agv_operation_and_its_container;
@@ -36,6 +37,7 @@ YB_Vessel_Num Yb_Vessel_Num;
 AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum;
 Berth_Vessel berth_Vessel;
 Change_Speed change_speed;
+Vessel_Arrival_Time vessel_arrival_time;
 IMAGE bg;
 IMAGE PLAYPNG;
 IMAGE HALTPNG;
@@ -60,7 +62,7 @@ void visualization::stop() {
     if (MouseHit()) {
         ExMessage msg = getmessage();
         if (msg.message == WM_LBUTTONDOWN) {
-            if (msg.x >= 770 && msg.x <= 870 && msg.y >= 848 + 22 && msg.y <= 952 + 22) {
+            if (msg.x >= 770 + 10 && msg.x <= 870 + 10 && msg.y >= 848 + 22 && msg.y <= 952 + 22) {
                 if (stopflag == false)stopflag = true;
                 else stopflag = false;
             }
@@ -68,8 +70,8 @@ void visualization::stop() {
         if (stopflag == true) {
             change_speed.change(msg);
             if (msg.message == WM_LBUTTONDOWN) {
-                if (msg.x >= 768 && msg.x <= 818 && msg.y >= 647 && msg.y <= 717) {
-                    putimage(768, 647, &decelerate1);
+                if (msg.x >= 768 + 10 && msg.x + 10 <= 818 && msg.y >= 647 && msg.y <= 717) {
+                    putimage(768 + 10, 647, &decelerate1);
                     ld = 0;
                     lf--;
                     std::thread t1(&AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::unzip_use_file, &Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum, lf);
@@ -100,10 +102,10 @@ void visualization::stop() {
                     time_t userTimeT = std::mktime(&temp.userTime);
                     time_t newTimeT = userTimeT + (lf-1)* oneday;
                     Clocktime.update(difftime(newTimeT,Clocktime.current_time_t),0,0);
-                    putimage(768, 647, &decelerate);
+                    putimage(768 + 10, 647, &decelerate);
                 }
-                else if (msg.x >= 823 && msg.x <= 873 && msg.y >= 647 && msg.y <= 717) {
-                    putimage(823, 647, &hasten1);
+                else if (msg.x >= 823 + 10 && msg.x <= 873 + 10 && msg.y >= 647 && msg.y <= 717) {
+                    putimage(823 + 10, 647, &hasten1);
                     ld = 0;
                     lf++;
                     std::thread t1(&AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum::unzip_use_file, &Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum, lf);
@@ -134,7 +136,7 @@ void visualization::stop() {
                     time_t userTimeT = std::mktime(&temp.userTime);
                     time_t newTimeT = userTimeT + (lf - 1) * oneday;
                     Clocktime.update(difftime(newTimeT, Clocktime.current_time_t), 0, 0);
-                    putimage(823, 647, &hasten);
+                    putimage(823 + 10, 647, &hasten);
                 }
             }
         }
@@ -144,7 +146,7 @@ void visualization::stop() {
 void visualization::update() {
     BeginBatchDraw();
     if (visualization::stopflag) {
-        putimagePNG(770, 848 + 22, &PLAYPNG);
+        putimagePNG(770+10, 848 + 22, &PLAYPNG);
         change_speed.update(1, 0, 0);
         EndBatchDraw();
         return;
@@ -153,9 +155,9 @@ void visualization::update() {
     putimage(0, 0, &bg);
     putimage(0, 0, &sea);
     putimage(0, 68, &Road);
-    putimagePNG(770, 848+22, &HALTPNG);
-    putimage(768, 647, &decelerate);
-    putimage(823, 647, &hasten);
+    putimagePNG(770+10, 848+22, &HALTPNG);
+    putimage(768+10, 647, &decelerate);
+    putimage(823+10, 647, &hasten);
     for (int i = 0; i < 16; i++) {
         if (i < 12) {
             if (i < 4) {
@@ -175,6 +177,7 @@ void visualization::update() {
     Agv_BeingIdleNum_Vessel_DelayedNum_WaitingNum.update(0, 0, 0);
     change_speed.update(0, 0, 0);
     Clocktime.update(change_speed.tt, 0, 0);
+    vessel_arrival_time.update(0,Clocktime.current_time_t);
     EndBatchDraw();
 }
 inline void ConvertToWideChar(const char* src, wchar_t* dest, int destSize) {

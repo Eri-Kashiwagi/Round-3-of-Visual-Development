@@ -64,14 +64,18 @@ void AGV_waitlist_QC_Status::update(int i, double x, double y) {
     putimage(x + 50+1, y, &quayside);
     while (getline(ss, s1, ',')) {
         if (d % 2 != 0) {
+            settextcolor(RED);
             s_w = wstring(s1.begin(), s1.end());
             settextstyle(15, 0, L"Tahoma");
             outtextxy(x + 50+3, y + (d - 1) / 2 * 20+1, s_w.c_str());
+            settextcolor(BLACK);
         }
         else {
+            settextcolor(RED);
             s_w = wstring(s1.begin(), s1.end());
             settextstyle(15, 0, L"Tahoma");
             outtextxy(x + 50 + 40+3, y + (d - 1) / 2 * 20+1, s_w.c_str());
+            settextcolor(BLACK);
         }
         d++;
     }

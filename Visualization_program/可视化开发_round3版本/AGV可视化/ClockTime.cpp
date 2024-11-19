@@ -55,8 +55,8 @@ long long ClockTime::calculateTimeFromSeconds() {
 }
 wstring ClockTime::time_to_wstring(tm current_time) {
     wstringstream ss;
-    ss << setfill(L'0') << std::setw(4) << (current_time.tm_year + 1900) << L"/"
-        << setw(2) << (current_time.tm_mon + 1) << L"/"
+    ss << setfill(L'0') << std::setw(4) << (current_time.tm_year + 1900) << L"-"
+        << setw(2) << (current_time.tm_mon + 1) << L"-"
         << setw(2) << current_time.tm_mday << L" "
         << setw(2) << current_time.tm_hour << L":"
         << setw(2) << current_time.tm_min << L":"
@@ -69,5 +69,5 @@ void ClockTime::update(int i,double x,double y) {
     wstring time_str = time_to_wstring(current_time);
     settextcolor(BLACK);
     settextstyle(50, 0, L"Consolas");
-    outtextxy(600, 950+22, time_str.c_str());
+    outtextxy(600+10, 950+22, time_str.c_str());
 }

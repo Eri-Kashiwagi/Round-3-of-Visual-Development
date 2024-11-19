@@ -144,6 +144,7 @@
     <ClCompile Include="vector2.cpp" />
     <ClCompile Include="YBLocation.cpp" />
     <ClCompile Include="YB_Vessel_Num.cpp" />
+    <ClCompile Include="Vessel_Arrival_Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AGV_BeingIdleNum_Vessel_DelayedNum_WaitingNum.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="QCLocation.h" />
     <ClInclude Include="YBLocation.h" />
     <ClInclude Include="YB_Vessel_Num.h" />
+    <ClInclude Include="Vessel_Arrival_Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
