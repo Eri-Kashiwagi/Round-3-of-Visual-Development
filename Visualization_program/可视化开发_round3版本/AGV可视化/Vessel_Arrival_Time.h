@@ -10,6 +10,8 @@ public:
     std::wstring arrive_time[300];
     std::wstring vessel_id[300];
     std::time_t current_time_t[300];
+    std::wstring seed;
+    std::wstring scenario;
     void update(int i, time_t temp);
 	Vessel_Arrival_Time();
 	~Vessel_Arrival_Time();

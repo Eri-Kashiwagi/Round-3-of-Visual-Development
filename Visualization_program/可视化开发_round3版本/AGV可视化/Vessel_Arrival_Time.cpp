@@ -19,6 +19,14 @@ Vessel_Arrival_Time::Vessel_Arrival_Time() {
     char fullPath[MAX_PATH];
     PathCombineA(fullPath, currentDirectory, fileName1);
     file.open(fullPath);
+    string s, s1;
+    wstring s_w;
+    getline(file, s);
+    stringstream ssss(s);
+    getline(ssss, s1, ',');
+    seed = wstring(s1.begin(), s1.end());
+    getline(ssss, s1, ',');
+    scenario = wstring(s1.begin(), s1.end());
     for (int j = 0; j < 300; j++) {
         string s, s1;
         wstring s_w;
@@ -38,6 +46,12 @@ Vessel_Arrival_Time::Vessel_Arrival_Time() {
     }
 }
 void Vessel_Arrival_Time::update(int i,time_t temp) {
+    settextstyle(20, 0, L"Consolas");
+    setfillcolor(WHITE);
+    solidrectangle(470, 965 + 5, 580, 1020 + 5);
+    settextcolor(BLACK);
+    outtextxy(490 - 10, 970 + 5, seed.c_str());
+    outtextxy(490 - 5 - 10 - 4, 995 + 5, scenario.c_str());
     for (int j = 0; j < 300; j++) {
         if (current_time_t[j] > temp) {
             int y = 0;

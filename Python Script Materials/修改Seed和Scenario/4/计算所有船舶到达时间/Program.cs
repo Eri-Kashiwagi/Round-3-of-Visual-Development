@@ -51,7 +51,7 @@ namespace WSC_SimChallenge_2024_Net.PortSimulation
                 .SelectMany(vessel => vessel.Value, (vessel, entry) => new { Vessel = vessel.Key, Week = entry.Key, Time = entry.Value })
                 .OrderBy(item => item.Time)
                 .ToList();
-
+                Console.WriteLine($"Seed:{seed}, Scenario:{runIndex}");
                 foreach (var item in sortedList)
                 {
                     Console.WriteLine($"Vessel: {item.Vessel}, Week: {item.Week}, Arrival Time: {item.Time.ToString("yyyy-MM-dd HH:mm:ss")}");
