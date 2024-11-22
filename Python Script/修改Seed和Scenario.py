@@ -16,6 +16,7 @@ def copy_file(source_file, target_path):
 
 def change(op1, op2):
     try:
+        op2=int(op2)+1
         if(op1=="77742"):
             op2=int(op2)+5
         elif(op1=="18078"):
@@ -48,12 +49,12 @@ if __name__ == "__main__":
     print("欢迎使用修改可视化仿真模型Scenario情景脚本")
     print("请选择 Seed (73386, 77742, 18078): ",end='')
     op1 = input().strip()
-    print("请选择 Scenario (1-5): ",end='')
+    print("请选择 Scenario (0-4): ",end='')
     op2 = input().strip()
     print("请确认是否备份完成好并关闭相关程序，本程序启动后将覆盖原文件 (如果完成请输入 1): ",end='')
     op3 = input().strip()
     if op3 == "1":
-        if op1 in ["73386", "77742", "18078"] and op2 in ["1", "2", "3", "4", "5"]:
+        if op1 in ["73386", "77742", "18078"] and op2 in ["0", "1", "2", "3", "4"]:
             print(f"执行 Seed {op1}, Scenario {op2} 的操作...")
             change(op1, op2)
             print("任务完成!")

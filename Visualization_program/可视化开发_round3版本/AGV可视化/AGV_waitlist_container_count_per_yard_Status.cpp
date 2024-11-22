@@ -51,10 +51,14 @@ void AGV_waitlist_container_count_per_yard_Status::update(int i, double x, doubl
     stringstream ss(s);
     getline(ss, s1, ',');
     getline(ss, s1, ',');
-    putimage(x - 25-10, y + 120, &Yard);
+    putimage(x - 25 - 10, y + 120, &Yard);
     wstring s_w = L"Contains:" + wstring(s1.begin(), s1.end());
-    settextstyle(25, 0, L"Tahoma");
-    outtextxy(x - 25-8, y + 120+1, s_w.c_str());
+    settextstyle(20, 0, L"Tahoma");
+    setfillcolor(YELLOW);
+    setbkmode(TRANSPARENT);
+    solidrectangle(x - 34, y + 278, x + 93, y + 278 + 20);
+    outtextxy(x - 3 - s1.length() * 4, y + 278, s_w.c_str());
+    setbkmode(OPAQUE);
     getline(ss, s1, ',');
     if (i % 2 == 0) {
         putimage(x - 68, y + 98, &status[imagemp[s1]]);
@@ -62,6 +66,14 @@ void AGV_waitlist_container_count_per_yard_Status::update(int i, double x, doubl
     else {
         putimage(x + 70, y + 98, &status[imagemp[s1]]);
     }
+    string s2 = "YardBlock" + to_string(i);
+    s_w = wstring(s2.begin(), s2.end());
+    setfillcolor(YELLOW);
+    setbkmode(TRANSPARENT);
+    solidrectangle(x - 34, y + 121, x + 93, y + 141);
+    settextstyle(20, 0, L"Tahoma");
+    outtextxy(x - 9 - (i / 10) * 3, y + 121, s_w.c_str());
+    setbkmode(OPAQUE);
     int d = 1;
     while (getline(ss, s1, ',')) {
         if (d % 2 != 0) {
