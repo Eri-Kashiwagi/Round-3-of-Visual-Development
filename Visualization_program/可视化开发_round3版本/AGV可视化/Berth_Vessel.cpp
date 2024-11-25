@@ -40,6 +40,14 @@ void Berth_Vessel::update(int i, double x, double y) {
 
     getline(ss, s1, ',');
     putimagePNG(i * 400 + 28, 0, &berth);
+    setbkmode(TRANSPARENT);
+    settextcolor(RED);
+    string s3 = "Berth" + to_string(i);
+    s_w = wstring(s3.begin(), s3.end());
+    settextstyle(25, 0, L"Tahoma");
+    outtextxy(i * 400 + 28 + 166, 13, s_w.c_str());
+    setbkmode(OPAQUE);
+    settextcolor(BLACK);
     if(!s1.empty()){
         putimagePNG(i * 400 + 30, 0, &vessel);
     }
